@@ -1,0 +1,112 @@
+:root {
+    --menu-bg: #791ad3;
+    --color-font1: #c4b0ee;
+    --color-font2: #ffffffa6;
+    --gr1: #7A4FC4;
+    --gr2: #5C35A0;
+    --gr3: #3E1F74;
+    --linha: #7422a3;
+    --perfil: #ffffff33;
+    --link-hover: #ffffff24;
+    --fonte: 'DM Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fonte);
+    display: flex;
+}
+
+/* ===== Menu lateral ===== */
+
+.menu {
+    width: 14.5rem;
+    min-height: 100vh;
+    background: linear-gradient(170deg, var(--gr3) 0%, var(--gr2) 55%, var(--gr1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.menu .top {
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--linha);
+}
+
+.menu h1 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.menu .middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+}
+
+.menu h2 {
+    color: var(--color-font2);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.08rem;
+    margin: 1rem 0 0.5rem;
+    padding-inline: 1.5rem;
+}
+
+.menu a {
+    color: var(--color-font1);
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.9rem 1.5rem;
+    border-left: 0.15rem solid transparent;
+    transition: background-color 0.5s ease;
+}
+
+.menu a:hover {
+    background-color: var(--link-hover);
+    border-left-color: white;
+    color: white;
+}
+
+.menu i {
+    font-size: 1.2rem;
+}
+
+.menu .bottom {
+    border-top: 1px solid var(--linha);
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.avatar {
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 50%;
+    background-color: var(--perfil);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.85rem;
+}
+
+.nome {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
