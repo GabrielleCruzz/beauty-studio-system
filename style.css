@@ -2,13 +2,16 @@
     --menu-bg: #791ad3;
     --color-font1: #c4b0ee;
     --color-font2: #ffffffa6;
+    --color-font3: #8a82a0;
     --gr1: #7A4FC4;
     --gr2: #5C35A0;
     --gr3: #3E1F74;
     --linha: #7422a3;
+    --linha2: #e8e0f5;
     --perfil: #ffffff33;
     --link-hover: #ffffff24;
     --fonte: 'DM Sans', sans-serif;
+    --fonte2: 'Cormorant Garamond', serif;
 }
 
 * {
@@ -109,4 +112,42 @@ body {
     color: white;
     font-size: 0.9rem;
     font-weight: 500;
+}
+
+
+/* ===== Cabeçalho ===== */
+
+header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    height: 5rem;
+    border-bottom: 2px solid var(--linha2);
+    align-items: center;
+    padding: 2rem;
+}
+
+header .nome-page{
+    font-family: var(--fonte2);
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+}
+
+header .data{
+    color: var(--color-font3);
+    font-size: 0.8rem;
+}
+
+header button{
+    background-color: var(--gr1);
+    color: white;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+header button:hover{
+    background-color: var(--gr2);
 }
