@@ -37,6 +37,7 @@ body {
 
 main{
     width: 100%;
+    margin-left: 14.5rem;
 }
 
 /* ===== Menu lateral ===== */
@@ -48,6 +49,7 @@ main{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: fixed;
 }
 
 .menu .top {
