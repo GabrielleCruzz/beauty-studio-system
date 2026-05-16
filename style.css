@@ -1,5 +1,6 @@
 :root {
     --menu-bg: #791ad3;
+    --bg: #f8f5fc;
     --color-font1: #c4b0ee;
     --color-font2: #ffffffa6;
     --color-font3: #8a82a0;
@@ -12,6 +13,10 @@
     --link-hover: #ffffff24;
     --fonte: 'DM Sans', sans-serif;
     --fonte2: 'Cormorant Garamond', serif;
+    --sombra-card: 0 4px 20px rgba(121, 26, 211, 0.06);
+    --borda-card: 1px solid #eee7f8;
+    --bg-icon-card: #ddd0f8;
+    --bg-dec: #f3effe;
 }
 
 * {
@@ -23,6 +28,11 @@
 body {
     font-family: var(--fonte);
     display: flex;
+    background-color: var(--bg);
+}
+
+main{
+    width: 100%;
 }
 
 /* ===== Menu lateral ===== */
@@ -150,4 +160,60 @@ header button{
 
 header button:hover{
     background-color: var(--gr2);
+}
+
+/* ===== Cards ===== */
+
+.cards{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.card{
+    background-color: white;
+    width: 17.5rem;
+    height: 10rem;
+    border-radius: 10px;
+    box-shadow: var(--sombra-card);
+    border: var(--borda-card);
+    color: var(--color-font3);
+    padding: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; /* esconde a parte do circulo que fica pra fora do card "*/
+}
+
+.card .info1{
+    font-size: 0.7rem;
+    margin-bottom: 0.7rem;
+    color: var(--color-font3);
+}
+
+.card .info2{
+    font-family: var(--fonte2);
+    color: black;
+    font-size: 1.5rem;
+}
+
+.card i{
+    color: var(--gr3);
+    background-color: var(--bg-icon-card);
+    padding: 0.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.6rem;
+    width: fit-content;
+}
+
+.card .dec{
+    width: 5rem;
+    height: 5rem;
+    background-color: var(--bg-dec);
+    border-radius: 50%;
+    position: absolute;
+    top: -23px;
+    right: -23px;
 }

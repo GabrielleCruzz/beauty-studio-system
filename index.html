@@ -1,25 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <title>Página inicial</title>
 </head>
+
 <body>
     <div id="menu"></div>
+    <main>
 
-    <header class="header">
-        <div>
-            <p class="nome-page">Página inicial</p>
-            <p class="data" id="data">Data</p>
+        <header class="header">
+            <div>
+                <p class="nome-page">Página inicial</p>
+                <p class="data" id="data">Data</p>
+            </div>
+            <div>
+                <button>+ Novo Agendamento</button>
+            </div>
+        </header>
+
+        <div class="cards">
+            <div class="card">
+                <div class="dec"></div>
+                <i class="ti ti-calendar-check"></i>
+                <p class="info1">AGENDAMENTOS DE HOJE</p>
+                <p class="info2">8</p>
+            </div>
+            <div class="card">
+                <div class="dec"></div>
+                <i class="ti ti-users"></i>
+                <p class="info1">CLIENTES ATENDIDAS HOJE</p>
+                <p class="info2">4</p>
+            </div>
+            <div class="card">
+                <div class="dec"></div>
+                <i class="ti ti-cash"></i>
+                <p class="info1">FATURAMENTO DO DIA</p>
+                <p class="info2">R$530,00</p>
+            </div>
+            <div class="card">
+                <div class="dec"></div>
+                <i class="ti ti-calendar-user"></i>
+                <p class="info1">CLIENTES DO MÊS</p>
+                <p class="info2">32</p>
+            </div>
         </div>
-        <div>
-            <button>+ Novo Agendamento</button>
-        </div>
-    </header>
+
+    </main>
 
     <script src="menu.js"></script>
 </body>
+
 </html>
