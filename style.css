@@ -387,7 +387,7 @@ header button:hover {
 /* ===== Página agenda ===== */
 
 .agenda {
-    margin: 3rem;
+    margin: 2rem 3rem 3rem 3rem;
     border: 2px solid var(--linha-agenda);
     border-radius: 15px;
     overflow: hidden;
@@ -443,16 +443,48 @@ header button:hover {
 .agenda .concluido, .agenda .emandamento, .agenda .naoiniciado {
     border-radius: 15px;
     margin: 1rem;
+    color: black;
 }
 
 .agenda .concluido {
-    border-left: 2px solid var(--color-concluido);
+    border-left: 3px solid var(--color-concluido);
 }
 
 .agenda .emandamento {
-    border-left: 2px solid var(--color-andamento);
+    border-left: 3px solid var(--color-andamento);
 }
 
 .agenda .naoiniciado {
-    border-left: 2px solid var(--color-naoiniciado);
+    border-left: 3px solid var(--color-naoiniciado);
+}
+
+/* ===== Descrição das cores ===== */
+
+.descricao{
+    display: flex;
+    font-size: 0.8rem;
+    margin-left: 3rem;
+    margin-top: 2rem;
+    color: var(--color-font3);
+}
+
+.descricao .concluido, .descricao .emandamento, .descricao .naoiniciado{
+    width: 15px;
+    height: 15px;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+}
+
+.descricao .concluido{
+    background-color: var(--color-concluido);
+}
+
+.descricao .emandamento{
+    background-color: var(--color-andamento);
+    margin-left: 1.3rem;
+}
+
+.descricao .naoiniciado{
+    background-color: var(--color-naoiniciado);
+    margin-left: 1.3rem;
 }
