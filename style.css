@@ -21,8 +21,10 @@
     --color-concluido: #388b63;
     --bg-andamento: #f6ead3;
     --color-andamento: #e6a122;
-    --bg-naoiniciado: #ddcff7;
+    --bg-naoiniciado: #e6dcf7;
     --color-naoiniciado: #7640af;
+    --bg-agenda: #edecee;
+    --linha-agenda: #dddde0;
 }
 
 * {
@@ -394,4 +396,89 @@ header button:hover{
     font-family: var(--fonte2);
     font-size: 1.5rem;
     font-weight: 400;
+}
+
+
+/* ---------- Página: Agenda do dia ----------*/
+
+.agenda {
+    margin: 3rem;
+    border-left: 2px solid var(--linha-agenda);
+    border-right: 2px solid var(--linha-agenda);
+    border-top: 2px solid var(--linha-agenda);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.header-agenda {
+    display: flex;
+}
+
+.hora-titulo {
+    width: 120px;
+    border-right: 2px solid var(--linha-agenda);
+    display: flex;
+    justify-content: center;
+}
+
+.agendamento-titulo {
+    flex: 1;
+}
+
+.agenda .titulo {
+    background-color: var(--bg-agenda);
+    padding: 1rem;
+    border-bottom: 2px solid var(--linha-agenda);
+    font-size: 0.9rem;
+}
+
+.linha-agenda {
+    display: flex;
+    border-bottom: 2px solid var(--linha-agenda);
+}
+
+.linha-hora {
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right: 2px solid var(--linha-agenda);
+    font-size: 0.9rem;
+}
+
+.linha-cliente {
+    flex: 1;
+    padding: 0.7rem;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profissional, .procedimento {
+    color: var(--color-font3);
+}
+
+.profissional {
+    margin-top: 0.3rem;
+}
+
+.agenda .concluido, .agenda .emandamento, .agenda .naoiniciado{
+    border-radius: 15px;
+    margin: 1rem;
+}
+
+.agenda .concluido {
+    background-color: var(--bg-concluido);
+    border-left: 2px solid var(--color-concluido);
+}
+
+.agenda .emandamento {
+    background-color: var(--bg-andamento);
+    border-left: 2px solid var(--color-andamento);
+}
+
+.agenda .naoiniciado {
+    background-color: var(--bg-naoiniciado);
+    border-left: 2px solid var(--color-naoiniciado);
 }
