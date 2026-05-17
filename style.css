@@ -39,7 +39,7 @@ body {
     background-color: var(--bg);
 }
 
-main{
+main {
     width: 100%;
     margin-left: 14.5rem;
 }
@@ -98,7 +98,7 @@ main{
     transition: background-color 0.5s ease;
 }
 
-.menu a:hover, .menu a.active{
+.menu a:hover, .menu a.active {
     background-color: var(--link-hover);
     border-left-color: white;
     color: white;
@@ -134,10 +134,9 @@ main{
     font-weight: 500;
 }
 
-
 /* ===== Cabeçalho ===== */
 
-header{
+header {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -147,19 +146,19 @@ header{
     padding: 2rem;
 }
 
-header .nome-page{
+header .nome-page {
     font-family: var(--fonte2);
     font-weight: 400;
     font-size: 1.5rem;
     margin-bottom: 0.3rem;
 }
 
-header .data{
+header .data {
     color: var(--color-font3);
     font-size: 0.8rem;
 }
 
-header button{
+header button {
     background-color: var(--gr1);
     color: white;
     padding: 0.8rem;
@@ -168,21 +167,20 @@ header button{
     cursor: pointer;
 }
 
-header button:hover{
+header button:hover {
     background-color: var(--gr2);
 }
 
 /* ===== Cards ===== */
 
-.cards{
+.cards {
     display: flex;
     gap: 2rem;
     justify-content: center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin: 2rem 0;
 }
 
-.card{
+.card {
     background-color: white;
     width: 17.5rem;
     height: 10rem;
@@ -195,22 +193,22 @@ header button:hover{
     flex-direction: column;
     justify-content: center;
     position: relative;
-    overflow: hidden; /* esconde a parte do circulo que fica pra fora do card "*/
+    overflow: hidden;
 }
 
-.card .info1{
+.card .info1 {
     font-size: 0.7rem;
     margin-bottom: 0.7rem;
     color: var(--color-font3);
 }
 
-.card .info2{
+.card .info2 {
     font-family: var(--fonte2);
     color: black;
     font-size: 1.5rem;
 }
 
-.card i{
+.card i {
     color: var(--gr2);
     background-color: var(--bg-icon-card);
     padding: 0.5rem;
@@ -219,7 +217,7 @@ header button:hover{
     width: fit-content;
 }
 
-.card .dec{
+.card .dec {
     width: 5rem;
     height: 5rem;
     background-color: var(--bg-dec);
@@ -231,48 +229,12 @@ header button:hover{
 
 /* ===== Cards agendamento e receitas ===== */
 
-.cards2{
+.cards2 {
     justify-content: space-evenly;
     display: flex;
 }
 
-/* ===== Card - agenda do dia ===== */
-
-.card-agenda{
-    background-color: white;
-    padding: 1rem;
-    border-radius: 10px;
-    border: var(--borda-card);
-    box-shadow: var(--sombra-card);
-    width: 45%;
-    height: 350px;
-    border-bottom: 8px solid white;
-    overflow-y: auto; /* Barra de rolagem */
-}
-
-/* Edição da barra de rolagem */
-/* largura da barra */
-.card-agenda::-webkit-scrollbar {
-    width: 6px;
-}
-
-/* trilho (fundo) */
-.card-agenda::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-/* parte que desliza */
-.card-agenda::-webkit-scrollbar-thumb {
-    background: #d2c4f0;
-    border-radius: 15px;
-}
-
-/* hover na barra */
-.card-agenda::-webkit-scrollbar-thumb:hover {
-    background: #a590c9;
-}
-
-.cards2 h1{
+.cards2 h1 {
     font-family: var(--fonte2);
     font-size: 1.3rem;
     font-weight: 100;
@@ -280,13 +242,47 @@ header button:hover{
     align-items: center;
 }
 
-.agenda-header{
+/* ===== Card agenda ===== */
+
+.card-agenda, .card-financeiro {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    border: var(--borda-card);
+    box-shadow: var(--sombra-card);
+    width: 45%;
+}
+
+.card-agenda {
+    height: 350px;
+    border-bottom: 8px solid white;
+    overflow-y: auto;
+}
+
+.card-agenda::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card-agenda::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.card-agenda::-webkit-scrollbar-thumb {
+    background: #d2c4f0;
+    border-radius: 15px;
+}
+
+.card-agenda::-webkit-scrollbar-thumb:hover {
+    background: #a590c9;
+}
+
+.agenda-header {
     display: flex;
     margin-bottom: 1.5rem;
     justify-content: space-between;
 }
 
-.comp-lista{
+.comp-lista {
     background-color: var(--bg-dec);
     border-radius: 10px;
     display: flex;
@@ -294,48 +290,45 @@ header button:hover{
     margin-bottom: 0.7rem;
 }
 
-.card-agenda .lista{
-    flex-direction: column;
-}
-
-.horario{
+.horario {
     display: flex;
     align-items: center;
     margin-right: 1rem;
 }
 
-.atend{
+.atend, .profissional, .procedimento {
     color: var(--color-font3);
+}
+
+.atend {
     font-size: 0.7rem;
 }
 
-.card-agenda .status{
-    background-color: var(--bg-icon-card);
+.card-agenda .status {
     border-radius: 15px;
-    padding: 0.5rem 0.8rem 0.5rem 0.8rem;
-    color: var(--gr2);
+    padding: 0.5rem 0.8rem;
     justify-content: flex-end;
     display: flex;
     margin-left: auto;
     font-size: 0.7rem;
 }
 
-.card-agenda .concluido{
+.concluido {
     background-color: var(--bg-concluido);
     color: var(--color-concluido);
 }
 
-.card-agenda .andamento{
+.andamento, .emandamento {
     background-color: var(--bg-andamento);
     color: var(--color-andamento);
 }
 
-.card-agenda .naoiniciado{
+.naoiniciado {
     background-color: var(--bg-naoiniciado);
     color: var(--color-naoiniciado);
 }
 
-.card-agenda button{
+.card-agenda button {
     color: var(--gr1);
     border: 1px solid var(--gr1);
     border-radius: 10px;
@@ -344,31 +337,24 @@ header button:hover{
     cursor: pointer;
 }
 
-.card-agenda button:hover{
+.card-agenda button:hover {
     transform: translateY(-1.5px);
     box-shadow: 0 2px 18px rgba(0, 0, 0, 0.12);
     transition: 0.2s ease;
 }
 
-
 /* ===== Card financeiro ===== */
 
-.card-financeiro{
-    background-color: white;
-    padding: 1rem;
-    border-radius: 10px;
-    border: var(--borda-card);
-    box-shadow: var(--sombra-card);
-    width: 45%;
+.card-financeiro {
     display: flex;
     flex-direction: column;
 }
 
-.card-financeiro h1{
+.card-financeiro h1 {
     padding: 8px;
 }
 
-.financeiro-grid{
+.financeiro-grid {
     margin-top: 1.5rem;
     flex: 1;
     display: grid;
@@ -377,7 +363,7 @@ header button:hover{
     padding-bottom: 1rem;
 }
 
-.financeiro-item{
+.financeiro-item {
     background-color: var(--bg-dec);
     border-radius: 12px;
     padding: 1rem;
@@ -387,41 +373,42 @@ header button:hover{
     justify-content: center;
 }
 
-.financeiro-item .titulo{
+.financeiro-item .titulo {
     color: var(--color-font3);
     font-size: 0.8rem;
 }
 
-.financeiro-item h2{
+.financeiro-item h2 {
     font-family: var(--fonte2);
     font-size: 1.5rem;
     font-weight: 400;
 }
 
-
-/* ---------- Página: Agenda do dia ----------*/
+/* ===== Página agenda ===== */
 
 .agenda {
     margin: 3rem;
-    border-left: 2px solid var(--linha-agenda);
-    border-right: 2px solid var(--linha-agenda);
-    border-top: 2px solid var(--linha-agenda);
+    border: 2px solid var(--linha-agenda);
     border-radius: 15px;
     overflow: hidden;
 }
 
-.header-agenda {
+.header-agenda, .linha-agenda {
     display: flex;
 }
 
-.hora-titulo {
+.hora-titulo, .linha-hora {
     width: 120px;
     border-right: 2px solid var(--linha-agenda);
     display: flex;
     justify-content: center;
 }
 
-.agendamento-titulo {
+.hora-titulo {
+    align-items: center;
+}
+
+.agendamento-titulo, .linha-cliente {
     flex: 1;
 }
 
@@ -433,21 +420,15 @@ header button:hover{
 }
 
 .linha-agenda {
-    display: flex;
     border-bottom: 2px solid var(--linha-agenda);
 }
 
 .linha-hora {
-    width: 120px;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    border-right: 2px solid var(--linha-agenda);
     font-size: 0.9rem;
 }
 
 .linha-cliente {
-    flex: 1;
     padding: 0.7rem;
     font-size: 0.8rem;
     display: flex;
@@ -455,30 +436,23 @@ header button:hover{
     justify-content: center;
 }
 
-.profissional, .procedimento {
-    color: var(--color-font3);
-}
-
 .profissional {
     margin-top: 0.3rem;
 }
 
-.agenda .concluido, .agenda .emandamento, .agenda .naoiniciado{
+.agenda .concluido, .agenda .emandamento, .agenda .naoiniciado {
     border-radius: 15px;
     margin: 1rem;
 }
 
 .agenda .concluido {
-    background-color: var(--bg-concluido);
     border-left: 2px solid var(--color-concluido);
 }
 
 .agenda .emandamento {
-    background-color: var(--bg-andamento);
     border-left: 2px solid var(--color-andamento);
 }
 
 .agenda .naoiniciado {
-    background-color: var(--bg-naoiniciado);
     border-left: 2px solid var(--color-naoiniciado);
 }
