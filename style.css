@@ -17,10 +17,12 @@
     --borda-card: 1px solid #eee7f8;
     --bg-icon-card: #ddd0f8;
     --bg-dec: #f3effe;
-    --bg-concluido: #c4ffd8;
-    --color-concluido: #446e5a;
-    --bg-andamento: #fcdfa9;
-    --color-andamento: #d58b00;
+    --bg-concluido: #dff8e7;
+    --color-concluido: #388b63;
+    --bg-andamento: #f6ead3;
+    --color-andamento: #e6a122;
+    --bg-naoiniciado: #ddcff7;
+    --color-naoiniciado: #7640af;
 }
 
 * {
@@ -324,6 +326,11 @@ header button:hover{
 .card-agenda .andamento{
     background-color: var(--bg-andamento);
     color: var(--color-andamento);
+}
+
+.card-agenda .naoiniciado{
+    background-color: var(--bg-naoiniciado);
+    color: var(--color-naoiniciado);
 }
 
 .card-agenda button{
