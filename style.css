@@ -25,6 +25,7 @@
     --color-naoiniciado: #7640af;
     --bg-agenda: #edecee;
     --linha-agenda: #dddde0;
+    --cancelar-hover: #e4e2e4;
 }
 
 * {
@@ -487,4 +488,204 @@ header button:hover {
 .descricao .naoiniciado{
     background-color: var(--color-naoiniciado);
     margin-left: 1.3rem;
+}
+
+/* ===== Modal ===== */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(3px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.overlay.abrir {
+    display: flex;
+}
+
+.modal-agendamento {
+    width: 30rem;
+    height: 40rem;
+    overflow: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: var(--borda-card);
+    border-top: 12px solid white;
+    border-bottom: 12px solid white;
+}
+
+.modal-agendamento::-webkit-scrollbar {
+    width: 7px;
+}
+
+.modal-agendamento::-webkit-scrollbar-thumb {
+    background: #d2c4f0;
+    border-radius: 10px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.modal-header h1 {
+    font-family: var(--fonte2);
+    font-weight: 400;
+}
+
+.fechar {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3rem;
+}
+
+.form-agendamento {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.campo label {
+    font-size: 0.9rem;
+}
+
+.campo input, .campo select, .campo textarea {
+    padding: 0.9rem;
+    border-radius: 10px;
+    border: 1px solid var(--linha-agenda);
+    font-family: var(--fonte);
+    outline: none;
+    background-color: var(--bg);
+}
+
+.campo textarea {
+    resize: none;
+}
+
+.linha-form {
+    display: flex;
+    gap: 1rem;
+}
+
+.linha-form .campo {
+    flex: 1;
+}
+
+.acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.cancelar {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.cancelar:hover{
+    background-color: var(--cancelar-hover);
+    transition: 0.4s ease;
+}
+
+.salvar {
+    background-color: var(--gr1);
+    color: white;
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.salvar:hover {
+    background-color: var(--gr2);
+    transition: 0.4s ease;
+}
+
+.linha-procedimento {
+    display: flex;
+    gap: 0.7rem;
+}
+
+.linha-procedimento select {
+    flex: 1;
+}
+
+.linha-procedimento button {
+    background-color: var(--gr1);
+    color: white;
+    border: none;
+    padding: 0 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.lista-procedimentos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1rem;
+}
+
+.procedimento-item {
+    background-color: var(--bg-dec);
+    border: 1px solid var(--linha2);
+    padding: 0.7rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.remover-procedimento {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    display: flex;
+    align-items: center;
+}
+
+#lista-procedimentos {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.item-procedimento {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #f3f3f3;
+    padding: 10px 12px;
+    border-radius: 8px;
+
+    font-size: 14px;
+}
+
+.btn-remover {
+    background: transparent;
+    border: none;
+    color: red;
+    font-size: 16px;
+    cursor: pointer;
 }

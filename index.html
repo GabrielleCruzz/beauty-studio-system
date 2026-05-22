@@ -20,7 +20,7 @@
                 <p class="data" id="data">Data</p>
             </div>
             <div>
-                <button>+ Novo Agendamento</button>
+                <button id="abrir-modal">+ Novo Agendamento</button>
             </div>
         </header>
 
@@ -159,6 +159,95 @@
         </div>
 
     </main>
+
+    <div class="overlay">
+        <div class="modal-agendamento">
+            <div class="modal-header">
+                <h1>Novo agendamento</h1>
+                <button class="fechar" id="fechar-modal">
+                    <i class="ti ti-x"></i>
+                </button>
+            </div>
+
+            <form class="form-agendamento">
+                <div class="campo">
+                    <label>Cliente</label>
+                    <input type="text" placeholder="Nome da cliente">
+                </div>
+
+                <div class="campo">
+                    <label>Procedimento</label>
+
+                    <select id="procedimento">
+                        <option selected disabled>
+                            Selecione um procedimento
+                        </option>
+                        <optgroup label="Cabelo">
+                            <option>Progressiva</option>
+                            <option>Coloração</option>
+                            <option>Escova</option>
+                        </optgroup>
+                        <optgroup label="Unhas">
+                            <option>Alongamento</option>
+                            <option>Banho de gel</option>
+                            <option>Mão</option>
+                        </optgroup>
+                    </select>
+                    <div id="lista-procedimentos"></div>
+                </div>
+
+                <div class="campo">
+                    <label>Profissional</label>
+
+                    <select>
+                        <option selected disabled>
+                            Selecione uma profissional
+                        </option>
+                        <option>Anny</option>
+                        <option>Val</option>
+                        <option>Anny e Val</option>
+                    </select>
+                    
+                </div>
+
+                <div class="linha-form">
+
+                    <div class="campo">
+                        <label>Data</label>
+                        <input type="date">
+                    </div>
+
+                    <div class="campo">
+                        <label>Horário</label>
+                        <input type="time">
+                    </div>
+
+                </div>
+
+                <div class="campo">
+                    <label>Valor</label>
+                    <input type="text" placeholder="R$ 0,00">
+                </div>
+
+                <div class="campo">
+                    <label>Observações</label>
+
+                    <textarea rows="4" placeholder="Digite alguma observação..."></textarea>
+                </div>
+
+                <div class="acoes">
+
+                    <button type="button" class="cancelar">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="salvar">
+                        Salvar agendamento
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script src="menu.js"></script>
 </body>
