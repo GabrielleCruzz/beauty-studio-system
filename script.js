@@ -106,3 +106,49 @@ function criarItemProcedimento(nome) {
 
     listaProcedimentos.appendChild(item);
 }
+
+
+// Mudar o status dos agendamentos
+
+const agendamentos = document.querySelectorAll(".linha-cliente");
+
+agendamentos.forEach((agendamento) => {
+    const status = agendamento.dataset.status;
+    agendamento.classList.add(status);
+
+    const botao = agendamento.querySelector(".btn-status");
+    atualizarStatus(agendamento, botao);
+
+    botao.addEventListener("click", () => {
+        const statusAtual = agendamento.dataset.status;
+
+        if (statusAtual == "naoiniciado") {
+            agendamento.dataset.status = "emandamento";
+        } else if (statusAtual == "emandamento") {
+            agendamento.dataset.status = "concluido";
+        }
+        atualizarStatus(agendamento, botao);
+    });
+});
+
+function atualizarStatus(agendamento, botao) {
+    const status = agendamento.dataset.status;
+    agendamento.classList.remove(
+        "naoiniciado", "emandamento", "concluido"
+    );
+    agendamento.classList.add(status);
+
+    // Atualiza os textos dos botões
+    if (status == "naoiniciado") {
+        botao.innerText =
+            "Iniciar procedimento";
+    }
+    else if (status == "emandamento") {
+        botao.innerText =
+            "Abrir cobrança";
+    }
+    else if (status == "concluido") {
+        botao.innerText =
+            "Concluído";
+    }
+}
