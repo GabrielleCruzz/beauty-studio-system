@@ -434,9 +434,9 @@ header button:hover {
     font-size: 0.8rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 0.2rem;
     position: relative;
+    justify-content: center;
 }
 
 .profissional {
@@ -470,10 +470,6 @@ header button:hover {
 }
 
 /* ===== Ações do agendamento ===== */
-
-.acoes-agendamento {
-    margin-top: 1rem;
-}
 
 .btn-status {
     border: none;
