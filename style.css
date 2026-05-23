@@ -14,7 +14,7 @@
     --fonte: 'DM Sans', sans-serif;
     --fonte2: 'Cormorant Garamond', serif;
     --sombra-card: 0 4px 20px rgba(121, 26, 211, 0.06);
-    --borda-card: 1px solid #eee7f8;
+    --borda-card: 1px solid #dfdedf;
     --bg-icon-card: #ddd0f8;
     --bg-dec: #f3effe;
     --bg-concluido: #dff8e7;
@@ -496,6 +496,115 @@ header button:hover {
 .btn-status:disabled {
     cursor: default;
     opacity: 0.7;
+}
+
+/* ===== Modal cobrança ===== */
+
+.overlay-cobranca {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(3px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Abrir modal */
+.overlay-cobranca.abrir {
+    display: flex;
+}
+
+.header-cobranca{
+    display: flex;
+}
+
+.modal-cobranca{
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 30%;
+}
+
+.header-cobranca h1{
+    font-family: var(--fonte2);
+    font-weight: 200;
+    font-size: 1.6rem;
+}
+
+.header-cobranca button{
+    background-color: white;
+    border: none;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-cobranca{
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.modal-cobranca .campo{
+    margin-top: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+.linha-resumo p{
+    color: var(--color-font3);
+    margin-right: 0.4rem;
+}
+
+.linha-resumo{
+    display: flex;
+    font-size: 0.85rem;
+    justify-content: space-between;
+    padding: 0.15rem;
+}
+
+.resumo-atend{
+    background-color: var(--bg-agenda);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    border: var(--borda-card);
+}
+
+.modal-cobranca .confirmar-pag{
+    background-color: var(--gr1);
+    border: none;
+    padding: 0.8rem;
+    border-radius: 10px;
+    color: white;
+}
+
+.campo .titulo{
+    font-size: 0.8rem;
+}
+
+.btn-confirm{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.erro-pagamento {
+    color: #d62828;
+    font-size: 0.8rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-3px);
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.erro-pagamento.mostrar {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 /* ===== Descrição das cores ===== */

@@ -111,6 +111,12 @@ function criarItemProcedimento(nome) {
 // Mudar o status dos agendamentos
 
 const agendamentos = document.querySelectorAll(".linha-cliente");
+let agendamentoAtual = null;
+const overlayCobranca = document.querySelector(".overlay-cobranca");
+const fecharCobranca = document.getElementById("fechar-cobranca");
+const confirmarPagamento = document.getElementById("confirmarPagamento");
+const valorPagamento = document.getElementById("valorPagamento");
+const erroPagamento = document.getElementById("erroPagamento");
 
 agendamentos.forEach((agendamento) => {
     const status = agendamento.dataset.status;
@@ -124,11 +130,33 @@ agendamentos.forEach((agendamento) => {
 
         if (statusAtual == "naoiniciado") {
             agendamento.dataset.status = "emandamento";
+            atualizarStatus(agendamento, botao);
         } else if (statusAtual == "emandamento") {
-            agendamento.dataset.status = "concluido";
+            agendamentoAtual = agendamento;
+            overlayCobranca.classList.add("abrir");
         }
-        atualizarStatus(agendamento, botao);
     });
+});
+
+fecharCobranca.addEventListener("click", () => {
+    overlayCobranca.classList.remove("abrir");
+});
+
+confirmarPagamento.addEventListener("click", () => {
+    if (!agendamentoAtual) return;
+    const valor = valorPagamento.value.trim();
+    if (valor == "" || valor <= 0) {
+        erroPagamento.classList.add("mostrar");
+        setTimeout(() => {
+            erroPagamento.classList.remove("mostrar");
+        }, 3000);
+        return;
+    }
+    agendamentoAtual.dataset.status = "concluido";
+    const botao = agendamentoAtual.querySelector(".btn-status");
+    atualizarStatus(agendamentoAtual, botao
+    );
+    overlayCobranca.classList.remove("abrir");
 });
 
 function atualizarStatus(agendamento, botao) {
@@ -137,18 +165,16 @@ function atualizarStatus(agendamento, botao) {
         "naoiniciado", "emandamento", "concluido"
     );
     agendamento.classList.add(status);
+    botao.disabled = false;
 
     // Atualiza os textos dos botões
     if (status == "naoiniciado") {
-        botao.innerText =
-            "Iniciar procedimento";
+        botao.innerText = "Iniciar procedimento";
     }
     else if (status == "emandamento") {
-        botao.innerText =
-            "Abrir cobrança";
+        botao.innerText = "Abrir cobrança";
     }
     else if (status == "concluido") {
-        botao.innerText =
-            "Concluído";
+        botao.innerText = "Concluído";
     }
 }

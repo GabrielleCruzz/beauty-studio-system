@@ -140,6 +140,56 @@
 
     </main>
 
+    <!-- Modal de cobrança de serviço  -->
+
+    <div class="overlay-cobranca">
+        <div class="modal-cobranca">
+            <div class="header-cobranca">
+                <h1>Finalizar atendimento</h1>
+                <button class="fechar-cobranca" id="fechar-cobranca">
+                    <i class="ti ti-x"></i>
+                </button>
+            </div>
+            <form>
+                <div class="resumo-atend">
+                    <div class="linha-resumo">
+                        <p>Cliente:</p> Maria Silva
+                    </div>
+                    <div class="linha-resumo">
+                        <p>Procedimento:</p> Progressiva
+                    </div>
+                    <div class="linha-resumo">
+                        <p>Profissional:</p> Val
+                    </div>
+                </div>
+                <div class="campo">
+                    <label class="titulo">Forma de pagamento</label>
+                    <select>
+                        <option>Pix</option>
+                        <option>Cartão (débito)</option>
+                        <option>Cartão (crédito)</option>
+                        <option>Dinheiro</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label class="titulo">Valor</label>
+                    <input type="text" id="valorPagamento">
+                </div>
+                <div class="erro-pagamento" id="erroPagamento">
+                    Digite um valor válido
+                </div>
+
+                <div class="btn-confirm">
+                    <button class="confirmar-pag" type="button" id="confirmarPagamento">
+                        Confirmar pagamento
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para novo agendamento -->
+
     <div class="overlay">
         <div class="modal-agendamento">
             <div class="modal-header">
