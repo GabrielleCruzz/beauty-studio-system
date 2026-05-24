@@ -889,3 +889,25 @@ header button:hover {
     top: -23px;
     right: -23px;
 }
+
+/* ===== Card de gráfico de Rendimento mensal ===== */
+
+.grafico-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: var(--borda-card);
+    box-shadow: var(--sombra-card);
+    width: 44%;
+}
+
+.grafico-card h3 {
+    margin-bottom: 1rem;
+    font-family: var(--fonte2);
+    font-weight: 100;
+}
+
+.cards-f-2{
+    display: flex;
+    justify-content: space-evenly;
+}
