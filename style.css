@@ -45,7 +45,7 @@ main {
     margin-left: 14.5rem;
 }
 
-/* ===== Menu lateral ===== */
+/* ---------- Menu lateral ---------- */
 
 .menu {
     width: 14.5rem;
@@ -385,7 +385,7 @@ header button:hover {
     font-weight: 400;
 }
 
-/* ===== Página agenda ===== */
+/* ---------- Página agenda ---------- */
 
 .agenda {
     margin: 2rem 3rem 3rem 3rem;
@@ -836,4 +836,56 @@ header button:hover {
     color: red;
     font-size: 16px;
     cursor: pointer;
+}
+
+
+/* ---------- Página de controle finançeiro ---------- */
+
+.cards-f {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem;
+}
+
+.card-f {
+    background-color: white;
+    width: 30%;
+    height: 10rem;
+    border: var(--borda-card);
+    box-shadow: var(--sombra-card);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    padding: 1.6rem;
+    color: var(--color-font3);
+}
+
+.card-f p{
+    font-size: 0.7rem;
+}
+
+.card-f .valor{
+    color: black;
+    font-family: var(--fonte2);
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+.card-f i{
+    background-color: var(--bg-concluido);
+    color: var(--color-concluido);
+    border-radius: 10px;
+    padding: 0.5rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.dec-f {
+    width: 5rem;
+    height: 5rem;
+    background-color: var(--bg-dec);
+    border-radius: 50%;
+    position: absolute;
+    top: -23px;
+    right: -23px;
 }
