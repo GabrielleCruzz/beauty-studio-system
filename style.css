@@ -26,6 +26,7 @@
     --bg-agenda: #edecee;
     --linha-agenda: #dddde0;
     --cancelar-hover: #e4e2e4;
+    --sombra-busca: 0 0 0 3px #e6c8ef4f;
 }
 
 * {
@@ -979,4 +980,42 @@ tbody tr {
 
 .profissional {
     font-weight: 600;
+}
+
+
+/* ---------- Página de clientes ---------- */
+
+.busca{
+    margin: 2rem;
+    position: relative;
+    width: 30%;
+    display: flex;
+}
+
+.busca .campo-busca{
+    padding: 0.8rem;
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    outline: none;
+    transition: 0.2s;
+}
+
+.campo-busca:focus {
+    border-color: #beb4c5;
+    box-shadow: var(--sombra-busca);
+}
+
+.campo-busca::placeholder{
+    color: var(--color-font3);
+    font-size: 0.9rem;
+}
+
+.busca i{
+    position: absolute;
+    top: 34%;
+    right: 5%;
+    color: var(--color-font3);
+    font-size: 0.9rem;
 }
