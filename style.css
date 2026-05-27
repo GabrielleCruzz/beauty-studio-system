@@ -13,7 +13,7 @@
     --link-hover: #ffffff24;
     --fonte: 'DM Sans', sans-serif;
     --fonte2: 'Cormorant Garamond', serif;
-    --sombra-card: 0 4px 20px rgba(121, 26, 211, 0.06);
+    --sombra-card: 0 4px 20px rgba(132, 44, 214, 0.06);
     --borda-card: 1px solid #dfdedf;
     --bg-icon-card: #ddd0f8;
     --bg-dec: #f3effe;
@@ -26,7 +26,7 @@
     --bg-agenda: #edecee;
     --linha-agenda: #dddde0;
     --cancelar-hover: #e4e2e4;
-    --sombra-busca: 0 0 0 3px #e6c8ef4f;
+    --sombra-busca: 0 0 0 3px #d9ade64f;
 }
 
 * {
@@ -985,6 +985,8 @@ tbody tr {
 
 /* ---------- Página de clientes ---------- */
 
+/* ===== Campo de busca ===== */
+
 .busca{
     margin: 2rem;
     position: relative;
@@ -1000,6 +1002,8 @@ tbody tr {
     border: 2px solid #ddd;
     outline: none;
     transition: 0.2s;
+    border: var(--borda-card);
+    box-shadow: var(--sombra-card);
 }
 
 .campo-busca:focus {
@@ -1019,3 +1023,4 @@ tbody tr {
     color: var(--color-font3);
     font-size: 0.9rem;
 }
+
