@@ -4,6 +4,7 @@
     --color-font1: #c4b0ee;
     --color-font2: #ffffffa6;
     --color-font3: #8a82a0;
+    --color-font4: #626065;
     --gr1: #7A4FC4;
     --gr2: #5C35A0;
     --gr3: #3E1F74;
@@ -933,7 +934,7 @@ header button:hover {
     margin-bottom: 2rem;
 }
 
-.tabela-card {
+.tabelas-financeiro .tabela-card {
     background-color: white;
     width: 44%;
     padding: 1.5rem;
@@ -942,39 +943,38 @@ header button:hover {
     box-shadow: var(--sombra-card);
 }
 
-.tabela-header {
+.tabelas-financeiro .tabela-header {
     margin-bottom: 1.5rem;
 }
 
-.tabela-header h3 {
+.tabelas-financeiro .tabela-header h3 {
     font-family: var(--fonte2);
     font-weight: 100;
     font-size: 1.3rem;
 }
 
-table {
+.tabelas-financeiro table {
     width: 100%;
     border-collapse: collapse;
 }
 
-thead {
+.tabelas-financeiro thead {
     background-color: #f7f2ff;
 }
 
-th {
+.tabelas-financeiro th {
     padding: 1rem;
     text-align: left;
     font-weight: 600;
     color: #6b5b95;
 }
 
-td {
+.tabelas-financeiro td {
     padding: 1rem;
-
     border-top: 1px solid #eee;
 }
 
-tbody tr {
+.tabelas-financeiro tbody tr {
     transition: 0.2s;
 }
 
@@ -989,6 +989,7 @@ tbody tr {
 
 .busca{
     margin: 2rem;
+    margin-left: 4rem;
     position: relative;
     width: 30%;
     display: flex;
@@ -1024,3 +1025,55 @@ tbody tr {
     font-size: 0.9rem;
 }
 
+/* ===== Lista de clientes ===== */
+
+.tabela-clientes {
+    display: flex;
+    justify-content: center;
+}
+
+.tabela-clientes table {
+    width: 90%;
+    background: white;
+    border-radius: 10px;
+    border: var(--borda-card);
+    box-shadow: var(--sombra-card);
+    padding: 1rem;
+}
+
+.tabela-clientes th,
+.tabela-clientes td {
+    padding: 1rem;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.tabela-clientes td{
+    border-top: 1px solid var(--bg-naoiniciado);
+    color: var(--color-font4);
+}
+
+.tabela-clientes th{
+    color: var(--linha);
+}
+
+.tabela-clientes .visitas{
+    background-color: var(--bg-naoiniciado);
+    display: inline;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.btn-ver {
+    background: transparent;
+    border: 1px solid #d8ccec;
+    color: #8a7ca8;
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn-ver:hover {
+    background-color: var(--bg-dec);
+}
