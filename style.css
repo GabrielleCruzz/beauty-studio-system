@@ -28,6 +28,7 @@
     --linha-agenda: #dddde0;
     --cancelar-hover: #e4e2e4;
     --sombra-busca: 0 0 0 3px #d9ade64f;
+    --page-padding: 2rem 3rem;
 }
 
 * {
@@ -146,7 +147,7 @@ header {
     height: 5rem;
     border-bottom: 2px solid var(--linha2);
     align-items: center;
-    padding: 2rem;
+    padding: 2rem 3rem;
 }
 
 header .nome-page {
@@ -180,7 +181,7 @@ header button:hover {
     display: flex;
     gap: 2rem;
     justify-content: center;
-    margin: 2rem 0;
+    margin: 2rem 3rem;
 }
 
 .card {
@@ -233,8 +234,10 @@ header button:hover {
 /* ===== Cards agendamento e receitas ===== */
 
 .cards2 {
-    justify-content: space-evenly;
+    justify-content: space-between;
     display: flex;
+    padding: var(--page-padding);
+    gap: 2rem;
 }
 
 .cards2 h1 {
@@ -253,7 +256,7 @@ header button:hover {
     border-radius: 10px;
     border: var(--borda-card);
     box-shadow: var(--sombra-card);
-    width: 45%;
+    flex: 1;
 }
 
 .card-agenda {
@@ -390,7 +393,8 @@ header button:hover {
 /* ---------- Página agenda ---------- */
 
 .agenda {
-    margin: 2rem 3rem 3rem 3rem;
+    margin: var(--page-padding);
+    margin-top: 0;
     border: 2px solid var(--linha-agenda);
     border-radius: 15px;
     overflow: hidden;
@@ -614,8 +618,8 @@ header button:hover {
 .descricao{
     display: flex;
     font-size: 0.8rem;
-    margin-left: 3rem;
-    margin-top: 2rem;
+    padding: var(--page-padding);
+    padding-bottom: 1rem;
     color: var(--color-font3);
 }
 
@@ -845,13 +849,15 @@ header button:hover {
 
 .cards-f {
     display: flex;
-    justify-content: space-around;
-    margin: 2rem;
+    justify-content: space-between;
+    gap: 2rem;
+    margin: var(--page-padding);
+    margin-bottom: 2rem;
 }
 
 .card-f {
     background-color: white;
-    width: 30%;
+    flex: 1;
     height: 10rem;
     border: var(--borda-card);
     box-shadow: var(--sombra-card);
@@ -903,7 +909,7 @@ header button:hover {
     padding-bottom: 2.6rem;
     border: var(--borda-card);
     box-shadow: var(--sombra-card);
-    width: 44%;
+    flex: 1;
     height: 330px;
     position: relative;
 }
@@ -921,22 +927,28 @@ header button:hover {
 
 .cards-f-2 {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: flex-start;
+    gap: 2rem;
+    padding: var(--page-padding);
+    padding-top: 0;
+    padding-bottom: 2rem;
 }
 
 /* ===== Tabelas de rendimento mensal e total de atendimentos por profissional ===== */
 
 .tabelas-financeiro {
     display: flex;
-    justify-content: space-evenly;
-    margin-top: 2rem;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: var(--page-padding);
+    padding-top: 0;
     margin-bottom: 2rem;
 }
 
 .tabelas-financeiro .tabela-card {
     background-color: white;
-    width: 44%;
+    flex: 1;
     padding: 1.5rem;
     border-radius: 16px;
     border: var(--borda-card);
@@ -988,8 +1000,8 @@ header button:hover {
 /* ===== Campo de busca ===== */
 
 .busca{
-    margin: 2rem;
-    margin-left: 4rem;
+    margin: var(--page-padding);
+    margin-bottom: 1rem;
     position: relative;
     width: 30%;
     display: flex;
@@ -1028,12 +1040,11 @@ header button:hover {
 /* ===== Lista de clientes ===== */
 
 .tabela-clientes {
-    display: flex;
-    justify-content: center;
+    padding: 0 3rem 2rem 3rem;
 }
 
 .tabela-clientes table {
-    width: 90%;
+    width: 100%;
     background: white;
     border-radius: 10px;
     border: var(--borda-card);
