@@ -1088,3 +1088,35 @@ header button:hover {
 .btn-ver:hover {
     background-color: var(--bg-dec);
 }
+
+
+/* ===== Modal adicionar cliente ===== */
+
+.overlay-add-cliente{
+    display: none;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(3px);
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-add-cliente.abrir{
+    display: flex;
+}
+
+.modal-add-cliente{
+    width: 30rem;
+    background-color: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: var(--borda-card);
+    border-top: 12px solid white;
+}
+
+.form-add-cliente{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
