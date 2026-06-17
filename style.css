@@ -1092,7 +1092,7 @@ header button:hover {
 
 /* ===== Modal adicionar cliente ===== */
 
-.overlay-add-cliente{
+.overlay-add-cliente, .overlay-ver-cliente{
     display: none;
     position: fixed;
     background: rgba(0, 0, 0, 0.35);
@@ -1102,21 +1102,119 @@ header button:hover {
     align-items: center;
 }
 
-.overlay-add-cliente.abrir{
+.overlay-add-cliente.abrir, .overlay-ver-cliente.abrir{
     display: flex;
 }
 
-.modal-add-cliente{
-    width: 30rem;
+.modal-add-cliente, .modal-ver{
+    width: 28rem;
     background-color: white;
     border-radius: 15px;
     padding: 1.5rem;
     box-shadow: var(--borda-card);
     border-top: 12px solid white;
+    border-bottom: 12px solid white;
 }
 
-.form-add-cliente{
+.modal-ver{
+    height: 40rem;
+    overflow-y: auto;
+}
+
+.modal-ver::-webkit-scrollbar {
+    width: 7px;
+}
+
+.modal-ver::-webkit-scrollbar-thumb {
+    background: #d2c4f0;
+    border-radius: 10px;
+}
+
+.form-add-cliente, .form-ver{
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.campo-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.campo-info label {
+    font-size: 0.9rem;
+}
+
+.campo-info input, .campo-info textarea {
+    padding: 0.9rem;
+    border-radius: 10px;
+    border: 1px solid var(--linha-agenda);
+    font-family: var(--fonte);
+    outline: none;
+    background-color: var(--bg-agenda);
+}
+
+.campo-info, .text{
+    position: relative;
+}
+
+.campo-info i{
+    position: absolute;
+    top: 53%;
+    right: 4%;
+}
+
+.text i{
+    position: absolute;
+    top: 30%;
+}
+
+.text textarea{
+    resize: none;
+}
+
+.form-ver i{
+    color: var(--gr2);
+    cursor: pointer;
+}
+
+.atendimento{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--bg-dec);
+    padding: 1rem;
+    border-radius: 10px;
+    border: var(--borda-card);
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+}
+
+.atendimento .info4{ /* valor */
+    text-align: right;
+    color: var(--gr3);
+}
+
+.atendimento .info1, .atendimento .info3{ /* procedimento e data */
+    margin-bottom: 0.3rem;
+}
+
+.atendimento .info2{
+    color: var(--gr3);
+}
+
+.titulo-historico{
+    font-size: 1.2rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.7rem;
+    font-family: var(--fonte2);
+    font-weight: 100;
+}
+
+.lista-atendimentos .mais{
+    display: flex;
+    color: var(--gr3);
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.8rem;
 }

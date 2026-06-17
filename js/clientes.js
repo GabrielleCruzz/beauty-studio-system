@@ -16,6 +16,26 @@ fecharModalClientes.addEventListener("click", () => {
     formClientes.reset();
 });
 
+// Modal de ver mais informações da cliente
+
+const overlayInfos = document.querySelector(".overlay-ver-cliente")
+const abrirModalInfos = document.querySelectorAll(".btn-ver")
+const fecharModalInfos = document.getElementById("fechar-modal-ver")
+const formInfos = document.querySelector(".form-ver")
+
+abrirModalInfos.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        overlayInfos.classList.add("abrir");
+        document.body.style.overflow = "hidden";
+    });
+});
+
+fecharModalInfos.addEventListener("click", () => {
+    overlayInfos.classList.remove("abrir");
+    document.body.style.overflow = "auto";
+    formInfos.reset();
+});
+
 // Formatação do número de telefone
 
 const tel = document.getElementById("tel");
