@@ -1155,6 +1155,10 @@ header button:hover {
     background-color: var(--bg-agenda);
 }
 
+.campo-info .campo:enabled{
+    background-color: var(--bg-dec);
+}
+
 .campo-info, .text{
     position: relative;
 }

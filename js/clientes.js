@@ -57,3 +57,33 @@ dataNascimento.addEventListener("input", (e) => {
     valor = valor.replace(/^(\d{2})\/(\d{2})(\d)/, "$1/$2/$3");
     e.target.value = valor;
 });
+
+
+// Permite editar as infromações 
+
+const btnEditar = document.querySelectorAll('.editar');
+
+btnEditar.forEach((botao) => {
+    botao.addEventListener('click', () => {
+        const container = botao.parentElement;
+        const campo = container.querySelector('.campo');
+
+        const desabilitado = campo.disabled;
+
+        if(desabilitado) {
+            // entra no modo de edição
+            campo.disabled = false;
+
+            // muda o icone
+            botao.classList.remove('ti-pencil');
+            botao.classList.add('ti-check');
+        } else {
+            // salva e sai do modo de edição
+            campo.disabled = true;
+
+            // volta ícone para lápis
+            botao.classList.remove('ti-check');
+            botao.classList.add('ti-pencil');
+        }
+    });
+});
