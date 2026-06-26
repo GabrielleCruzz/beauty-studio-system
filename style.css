@@ -1079,7 +1079,7 @@ header button:hover {
     background: transparent;
     border: 1px solid #d8ccec;
     color: #8a7ca8;
-    padding: .5rem 1rem;
+    padding: .5rem .65rem;
     border-radius: 8px;
     cursor: pointer;
     transition: .3s;
@@ -1092,7 +1092,7 @@ header button:hover {
 
 /* ===== Modal adicionar cliente ===== */
 
-.overlay-add-cliente, .overlay-ver-cliente{
+.overlay-add-cliente, .overlay-ver-cliente, .overlay-apagar{
     display: none;
     position: fixed;
     background: rgba(0, 0, 0, 0.35);
@@ -1102,11 +1102,11 @@ header button:hover {
     align-items: center;
 }
 
-.overlay-add-cliente.abrir, .overlay-ver-cliente.abrir{
+.overlay-add-cliente.abrir, .overlay-ver-cliente.abrir, .overlay-apagar.abrir{
     display: flex;
 }
 
-.modal-add-cliente, .modal-ver{
+.modal-add-cliente, .modal-ver, .modal-apagar{
     width: 28rem;
     background-color: white;
     border-radius: 15px;
@@ -1221,4 +1221,46 @@ header button:hover {
     justify-content: center;
     cursor: pointer;
     font-size: 0.8rem;
+}
+
+/* btn para abrir modal de excluir clientes */
+
+.btn-apagar{
+    background: transparent;
+    border: none;
+    color: red;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.modal-apagar h1{
+    font-size: 1.5rem;
+    font-family: var(--fonte1);
+    font-weight: 200;
+    margin-bottom: 1rem;
+}
+
+.modal-apagar{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#confirmar-excluir, #cancelar-excluir{
+    padding: 0.6rem;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+}
+
+#confirmar-excluir{
+    background-color: #ff0000;
+}
+
+#cancelar-excluir{
+    background-color: var(--color-font3);
 }

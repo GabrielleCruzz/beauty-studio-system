@@ -7,13 +7,13 @@ const formClientes = document.querySelector(".form-add-cliente")
 
 abrirModalClientes.addEventListener("click", () => {
     overlayClientes.classList.add("abrir");
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden"; // impede que a página role quando o modal estiver aberto
 });
 
 fecharModalClientes.addEventListener("click", () => {
     overlayClientes.classList.remove("abrir");
-    document.body.style.overflow = "auto";
-    formClientes.reset();
+    document.body.style.overflow = "auto"; // desbloqueia a rolagem
+    formClientes.reset(); // apaga as informações do formulário
 });
 
 // Modal de ver mais informações da cliente
@@ -86,4 +86,36 @@ btnEditar.forEach((botao) => {
             botao.classList.add('ti-pencil');
         }
     });
+});
+
+
+// Modal de confirmação para excluir clientes
+
+const apagar = document.querySelectorAll('.btn-apagar');
+const overlayApagar = document.querySelector('.overlay-apagar');
+const btnCancelar = document.getElementById('cancelar-excluir');
+const btnConfirmar = document.getElementById('confirmar-excluir');
+let clienteExcluir = null;
+
+apagar.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        overlayApagar.classList.add("abrir");
+        document.body.style.overflow = "hidden";
+        // guarda a linha do botão clicado
+        clienteExcluir = btn.closest("tr");
+    });
+});
+
+btnCancelar.addEventListener("click", () => {
+    overlayApagar.classList.remove("abrir");
+    document.body.style.overflow = "auto";
+});
+
+// Apaga a linha
+btnConfirmar.addEventListener("click", () => {
+    if (clienteExcluir) { // verifica se tem algo na linha
+        clienteExcluir.remove(); // remove a linha
+    }
+
+    overlayApagar.classList.remove("abrir"); // fecha o modal
 });
