@@ -23,12 +23,14 @@ const abrirModalInfos = document.querySelectorAll(".btn-ver")
 const fecharModalInfos = document.getElementById("fechar-modal-ver")
 const formInfos = document.querySelector(".form-ver")
 
-abrirModalInfos.forEach((btn) => {
-    btn.addEventListener("click", () => {
+function configurarBtnVer(botao) {
+    botao.addEventListener("click", () => {
         overlayInfos.classList.add("abrir");
         document.body.style.overflow = "hidden";
     });
-});
+}
+
+abrirModalInfos.forEach(configurarBtnVer);
 
 fecharModalInfos.addEventListener("click", () => {
     overlayInfos.classList.remove("abrir");
@@ -70,7 +72,7 @@ btnEditar.forEach((botao) => {
 
         const desabilitado = campo.disabled;
 
-        if(desabilitado) {
+        if (desabilitado) {
             // entra no modo de edição
             campo.disabled = false;
 
@@ -97,14 +99,16 @@ const btnCancelar = document.getElementById('cancelar-excluir');
 const btnConfirmar = document.getElementById('confirmar-excluir');
 let clienteExcluir = null;
 
-apagar.forEach((btn) => {
-    btn.addEventListener("click", () => {
+function configurarBtnExcluir(botao){
+    botao.addEventListener("click", () => {
         overlayApagar.classList.add("abrir");
         document.body.style.overflow = "hidden";
         // guarda a linha do botão clicado
-        clienteExcluir = btn.closest("tr");
+        clienteExcluir = botao.closest("tr");
     });
-});
+};
+
+apagar.forEach(configurarBtnExcluir);
 
 btnCancelar.addEventListener("click", () => {
     overlayApagar.classList.remove("abrir");
@@ -118,4 +122,41 @@ btnConfirmar.addEventListener("click", () => {
     }
 
     overlayApagar.classList.remove("abrir"); // fecha o modal
+});
+
+
+// Adicionar um novo cliente na tabela
+
+const inputNome = document.getElementById('nome');
+const inputTel = document.getElementById('tel');
+const inputData = document.getElementById('data');
+const textObs = document.getElementById('obs');
+const tabelaClientes = document.getElementById('tabelaClientes');
+
+formClientes.addEventListener("submit", (e) => {
+    e.preventDefault(); // impede que recarregue
+
+    // pega os valores
+    const nome = inputNome.value;
+    const telefone = inputTel.value;
+    const dataNascimento = inputData.value;
+    const observacoes = textObs.value;
+
+    // adiciona nova linha
+    const novaLinha = document.createElement("tr");
+    novaLinha.innerHTML = 
+    `<td>${nome}</td>
+    <td>${telefone}</td>
+    <td>—</td>
+    <td>—</td>
+    <td>R$ 0,00</td>
+    <td><p class="visitas">0x</p></td>
+    <td><button class="btn-ver"><i class="ti ti-eye"></i> Ver</button></td>
+    <td><button class="btn-apagar"><i class="ti ti-x"></i></button></td>`;
+    tabelaClientes.appendChild(novaLinha);
+    const btnVer = novaLinha.querySelector(".btn-ver");
+    configurarBtnVer(btnVer);
+    const btnExcluir = novaLinha.querySelector(".btn-apagar");
+    configurarBtnExcluir(btnExcluir);
+    overlayClientes.classList.remove("abrir"); // fecha o modal
 });

@@ -29,7 +29,7 @@
         </div>
 
         <div class="tabela-clientes">
-            <table>
+            <table id="tabelaClientes">
                 <tr>
                     <th>Cliente</th>
                     <th>Telefone</th>
@@ -120,19 +120,19 @@
             <form class="form-add-cliente">
                 <div class="campo">
                     <label>Cliente:</label>
-                    <input type="text" placeholder="Nome da cliente">
+                    <input id="nome" type="text" placeholder="Nome da cliente">
                 </div>
                 <div class="campo">
                     <label>Telefone:</label>
-                    <input type="tel" placeholder="Telefone da cliente" maxlength="15" id="tel">
+                    <input id="tel" type="tel" placeholder="Telefone da cliente" maxlength="15" >
                 </div>
                 <div class="campo">
                     <label>Data de Nascimento:</label>
-                    <input type="text" id="dataNascimento" placeholder="dd/mm/aaaa" maxlength="10">
+                    <input itemid="data" type="text" id="dataNascimento" placeholder="dd/mm/aaaa" maxlength="10">
                 </div>
                 <div class="campo">
                     <label>Observações</label>
-                    <textarea rows="4" placeholder="Digite alguma observação..."></textarea>
+                    <textarea id="obs" rows="4" placeholder="Digite alguma observação..."></textarea>
                 </div>
                 <div class="acoes">
                     <button type="submit" class="salvar">Cadastrar cliente</button>

@@ -1234,10 +1234,10 @@ header button:hover {
 }
 
 .modal-apagar h1{
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-family: var(--fonte1);
-    font-weight: 200;
-    margin-bottom: 1rem;
+    font-weight: 100;
+    margin-bottom: 1.3rem;
 }
 
 .modal-apagar{
