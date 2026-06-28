@@ -529,7 +529,7 @@ header button:hover {
 .modal-cobranca{
     background-color: white;
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 15px;
     width: 30%;
 }
 
@@ -1092,21 +1092,7 @@ header button:hover {
 
 /* ===== Modal adicionar cliente ===== */
 
-.overlay-add-cliente, .overlay-ver-cliente, .overlay-apagar{
-    display: none;
-    position: fixed;
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(3px);
-    inset: 0;
-    justify-content: center;
-    align-items: center;
-}
-
-.overlay-add-cliente.abrir, .overlay-ver-cliente.abrir, .overlay-apagar.abrir{
-    display: flex;
-}
-
-.modal-add-cliente, .modal-ver, .modal-apagar{
+.modal{
     width: 28rem;
     background-color: white;
     border-radius: 15px;
@@ -1223,7 +1209,7 @@ header button:hover {
     font-size: 0.8rem;
 }
 
-/* btn para abrir modal de excluir clientes */
+/* modal de excluir clientes */
 
 .btn-apagar{
     background: transparent;

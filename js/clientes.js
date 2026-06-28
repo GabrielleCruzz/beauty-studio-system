@@ -1,41 +1,49 @@
-// Modal de adicionar novas clientes
-
-const overlayClientes = document.querySelector(".overlay-add-cliente")
+const overlayClientes = document.getElementById("overlay-add-cliente")
 const abrirModalClientes = document.getElementById("abrir-modal")
 const fecharModalClientes = document.getElementById("fechar-modal")
 const formClientes = document.querySelector(".form-add-cliente")
 
-abrirModalClientes.addEventListener("click", () => {
-    overlayClientes.classList.add("abrir");
+// funções de abrir e fechar modais
+function abrirModal(overlay) {
+    overlay.classList.add("abrir");
     document.body.style.overflow = "hidden"; // impede que a página role quando o modal estiver aberto
+}
+
+function fecharModal(overlay, form = null) {
+    overlay.classList.remove("abrir");
+    document.body.style.overflow = "auto"; // desbloqueia a rolagem
+
+    if (form) {
+        form.reset(); // apaga as informações do formulário
+    }
+}
+
+// Modal de adicionar novas clientes
+abrirModalClientes.addEventListener("click", () => {
+    abrirModal(overlayClientes);
 });
 
 fecharModalClientes.addEventListener("click", () => {
-    overlayClientes.classList.remove("abrir");
-    document.body.style.overflow = "auto"; // desbloqueia a rolagem
-    formClientes.reset(); // apaga as informações do formulário
+    fecharModal(overlayClientes, formClientes);
 });
 
 // Modal de ver mais informações da cliente
 
-const overlayInfos = document.querySelector(".overlay-ver-cliente")
-const abrirModalInfos = document.querySelectorAll(".btn-ver")
+const overlayInfos = document.getElementById("overlay-ver-cliente")
+const btnVerClientes = document.querySelectorAll(".btn-ver")
 const fecharModalInfos = document.getElementById("fechar-modal-ver")
 const formInfos = document.querySelector(".form-ver")
 
 function configurarBtnVer(botao) {
     botao.addEventListener("click", () => {
-        overlayInfos.classList.add("abrir");
-        document.body.style.overflow = "hidden";
+        abrirModal(overlayInfos);
     });
 }
 
-abrirModalInfos.forEach(configurarBtnVer);
+btnVerClientes.forEach(configurarBtnVer);
 
 fecharModalInfos.addEventListener("click", () => {
-    overlayInfos.classList.remove("abrir");
-    document.body.style.overflow = "auto";
-    formInfos.reset();
+    fecharModal(overlayInfos, formInfos);
 });
 
 // Formatação do número de telefone
@@ -93,26 +101,24 @@ btnEditar.forEach((botao) => {
 
 // Modal de confirmação para excluir clientes
 
-const apagar = document.querySelectorAll('.btn-apagar');
-const overlayApagar = document.querySelector('.overlay-apagar');
+const btnExcluirCliente = document.querySelectorAll('.btn-apagar');
+const overlayApagar = document.getElementById('overlay-apagar');
 const btnCancelar = document.getElementById('cancelar-excluir');
 const btnConfirmar = document.getElementById('confirmar-excluir');
 let clienteExcluir = null;
 
 function configurarBtnExcluir(botao){
     botao.addEventListener("click", () => {
-        overlayApagar.classList.add("abrir");
-        document.body.style.overflow = "hidden";
+        abrirModal(overlayApagar);
         // guarda a linha do botão clicado
         clienteExcluir = botao.closest("tr");
     });
 };
 
-apagar.forEach(configurarBtnExcluir);
+btnExcluirCliente.forEach(configurarBtnExcluir);
 
 btnCancelar.addEventListener("click", () => {
-    overlayApagar.classList.remove("abrir");
-    document.body.style.overflow = "auto";
+    fecharModal(overlayApagar);
 });
 
 // Apaga a linha
@@ -121,7 +127,8 @@ btnConfirmar.addEventListener("click", () => {
         clienteExcluir.remove(); // remove a linha
     }
 
-    overlayApagar.classList.remove("abrir"); // fecha o modal
+    fecharModal(overlayApagar); // fecha o modal
+    clienteExcluir = null;
 });
 
 
@@ -129,9 +136,9 @@ btnConfirmar.addEventListener("click", () => {
 
 const inputNome = document.getElementById('nome');
 const inputTel = document.getElementById('tel');
-const inputData = document.getElementById('data');
+const inputData = document.getElementById('dataNascimento');
 const textObs = document.getElementById('obs');
-const tabelaClientes = document.getElementById('tabelaClientes');
+const tabelaClientes = document.querySelector('#tabelaClientes tbody');
 
 formClientes.addEventListener("submit", (e) => {
     e.preventDefault(); // impede que recarregue
@@ -139,7 +146,7 @@ formClientes.addEventListener("submit", (e) => {
     // pega os valores
     const nome = inputNome.value;
     const telefone = inputTel.value;
-    const dataNascimento = inputData.value;
+    const data = inputData.value;
     const observacoes = textObs.value;
 
     // adiciona nova linha
@@ -158,5 +165,5 @@ formClientes.addEventListener("submit", (e) => {
     configurarBtnVer(btnVer);
     const btnExcluir = novaLinha.querySelector(".btn-apagar");
     configurarBtnExcluir(btnExcluir);
-    overlayClientes.classList.remove("abrir"); // fecha o modal
+    fecharModal(overlayClientes, formClientes);
 });
