@@ -526,13 +526,6 @@ header button:hover {
     display: flex;
 }
 
-.modal-cobranca{
-    background-color: white;
-    padding: 2rem;
-    border-radius: 15px;
-    width: 30%;
-}
-
 .header-cobranca h1{
     font-family: var(--fonte2);
     font-weight: 200;
@@ -662,7 +655,6 @@ header button:hover {
 }
 
 .modal-agendamento {
-    width: 30rem;
     height: 40rem;
     overflow: auto;
 }
