@@ -41,29 +41,39 @@ mostrarData();
 
 // Modal de novo agendamento
 
-const overlay = document.querySelector(".overlay");
-const abrirModal = document.getElementById("abrir-modal");
-const fecharModal = document.getElementById("fechar-modal");
+const overlayAddCliente = document.getElementById("overlay-add-cliente");
+const abrirModalClientes = document.getElementById("abrir-modal");
+const fecharModalClientes = document.getElementById("fechar-modal");
 const cancelar = document.querySelector(".cancelar");
-const form = document.querySelector(".form-agendamento")
+const formAgendamento = document.querySelector(".form-agendamento")
 const selectProcedimento = document.getElementById("procedimento");
 const listaProcedimentos = document.getElementById("lista-procedimentos");
 
-abrirModal.addEventListener("click", () => {
+// funções de abrir e fechar modais
+function abrirModal(overlay) {
     overlay.classList.add("abrir");
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = "hidden"; // impede que a página role quando o modal estiver aberto
+}
+
+function fecharModal(overlay, form = null) {
+    overlay.classList.remove("abrir");
+    document.body.style.overflow = "auto"; // desbloqueia a rolagem
+
+    if (form) {
+        form.reset(); // apaga as informações do formulário
+    }
+}
+
+abrirModalClientes.addEventListener("click", () => {
+    abrirModal(overlayAddCliente);
 });
 
-fecharModal.addEventListener("click", () => {
-    overlay.classList.remove("abrir");
-    document.body.style.overflow = "auto";
-    form.reset();
+fecharModalClientes.addEventListener("click", () => {
+    fecharModal(overlayAddCliente, formAgendamento);
 });
 
 cancelar.addEventListener("click", () => {
-    overlay.classList.remove("abrir");
-    document.body.style.overflow = "auto"
-    form.reset();
+    fecharModal(overlayAddCliente, formAgendamento);
 });
 
 
