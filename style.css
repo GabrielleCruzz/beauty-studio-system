@@ -435,18 +435,17 @@ header button:hover {
     font-size: 0.9rem;
 }
 
-.linha-cliente {
-    padding: 0.7rem;
-    font-size: 0.8rem;
+.linha-cliente{
     display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    position: relative;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
 }
 
-.profissional {
-    margin-top: 0.3rem;
+.info-agendamento{
+    display: flex;
+    gap: 0.3rem;
+    flex-direction: column;
 }
 
 /* ===== Status do agendamento ===== */
@@ -479,18 +478,19 @@ header button:hover {
 
 .btn-status {
     border: none;
-    padding: 0.7rem 1rem;
+    padding: 0.8rem 1.1rem;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-weight: 500;
     background-color: white;
     transition: 0.3s ease;
     box-shadow: 1px 1px 7px rgb(217, 216, 216);
     border: var(--borda-card);
-    position: absolute;
-    top: 20px;
-    right: 20px;
+}
+
+.btn-config{
+    display: flex;
 }
 
 .btn-status:hover {
@@ -503,6 +503,24 @@ header button:hover {
     cursor: default;
     opacity: 0.7;
 }
+
+.btn-icon{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.acoes-agendamento{
+    margin-right: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-excluir{
+    color: red;
+}
+
 
 /* ===== Modal cobrança ===== */
 
@@ -974,10 +992,6 @@ header button:hover {
 
 .tabelas-financeiro tbody tr {
     transition: 0.2s;
-}
-
-.profissional {
-    font-weight: 600;
 }
 
 
