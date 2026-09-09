@@ -1,4 +1,4 @@
-fetch("/components/menu.html")
+fetch("../components/menu.html")
     .then(response => response.text())
     .then(data => {
 

@@ -97,17 +97,10 @@
 
     // Modais de edição
 
-    const overlayEdtNaoIniciado =
-        document.getElementById("overlay-edt-naoiniciado");
-
-    const overlayEdtEmAndamento =
-        document.getElementById("overlay-edt-emandamento");
-
-    const overlayEdtConcluido =
-        document.getElementById("overlay-edt-concluido");
-
-    const btnEditar =
-        document.querySelectorAll(".btn-editar");
+    const overlayEdtNaoIniciado = document.getElementById("overlay-edt-naoiniciado");
+    const overlayEdtEmAndamento = document.getElementById("overlay-edt-emandamento");
+    const overlayEdtConcluido = document.getElementById("overlay-edt-concluido");
+    const btnEditar = document.querySelectorAll(".btn-editar");
 
     btnEditar.forEach((botao) => {
 
@@ -136,51 +129,35 @@
         });
     });
 
-    const botoesFecharEdt =
-        document.querySelectorAll(".fechar-modal-edt");
+    const botoesFecharEdt = document.querySelectorAll(".fechar-modal-edt");
 
     botoesFecharEdt.forEach((botao) => {
-
         botao.addEventListener("click", () => {
-
             const modal =
                 botao.closest(".overlay");
-
             fecharModal(modal);
-
         });
-
     });
 
     const botoesCancelarEdt =
         document.querySelectorAll(".cancelarEdt");
 
     botoesCancelarEdt.forEach((botao) => {
-
         botao.addEventListener("click", () => {
-
             const modal =
                 botao.closest(".overlay");
-
             fecharModal(modal);
-
         });
-
     });
-
+    
     // Formulários de edição
 
-    const formEdtAgendamento =
-        document.querySelector(".edt-form-agendamento");
+    const formEdtAgendamento = document.querySelector(".edt-form-agendamento");
 
     if (formEdtAgendamento) {
 
-        const selectProcedimento =
-            formEdtAgendamento.querySelector("#edt-procedimento");
-
-        const listaProcedimentosEdt =
-            document.getElementById("edt-lista-procedimentos");
-
+        const selectProcedimento = formEdtAgendamento.querySelector("#edt-procedimento");
+        const listaProcedimentosEdt = document.getElementById("edt-lista-procedimentos");
         let procedimentosSelecionadosEdt = [];
         selectProcedimento.addEventListener("change", () => {
 
@@ -201,9 +178,7 @@
 
         function criarItemProcedimentoEdt(nome) {
 
-            const item =
-                document.createElement("div");
-
+            const item = document.createElement("div");
             item.classList.add("item-procedimento");
 
             item.innerHTML = `
