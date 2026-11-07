@@ -7,136 +7,97 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/menu.js" defer></script>
-    <script src="../js/dashboard.js" defer></script>
+    <script src="../js/clients.js" defer></script>
     <title>Clientes</title>
 </head>
 
 <body>
     <div id="menu"></div>
-
     <main>
         <header class="header">
             <div>
                 <p class="nome-page">Clientes</p>
                 <p class="data" id="data">Data</p>
             </div>
-            <button id="abrir-modal">+ Adicionar novo cliente</button>
+            <button id="abrir-modal" type="button">+ Adicionar novo cliente</button>
         </header>
 
-        <div class="busca">
-            <input class="campo-busca" type="text" placeholder="Buscar cliente">
-            <i class="ti ti-search"></i>
-        </div>
-
-        <div class="tabela-clientes">
-            <table id="tabelaClientes">
-                <thead>
-                    <tr>
-                        <th>Cliente</th>
-                        <th>Telefone</th>
-                        <th>Último serviço</th>
-                        <th>Última visita</th>
-                        <th>Total gasto</th>
-                        <th>Visitas</th>
-                        <th>Ver mais</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td>Maria</td>
-                        <td>(11) 99999-9999</td>
-                        <td>Escova</td>
-                        <td>03/06/26</td>
-                        <td>R$ 730,00</td>
-                        <td>
-                            <p class="visitas">8x</p>
-                        </td>
-                        <td><button class="btn-ver"><i class="ti ti-eye"></i> Ver</button></td>
-                        <td><button class="btn-apagar"><i class="ti ti-x"></i></button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Ana</td>
-                        <td>(11) 88888-8888</td>
-                        <td>Pé e mão</td>
-                        <td>01/06/26</td>
-                        <td>R$ 1.150,00</td>
-                        <td>
-                            <p class="visitas">12x</p>
-                        </td>
-                        <td><button class="btn-ver"><i class="ti ti-eye"></i> Ver</button></td>
-                        <td><button class="btn-apagar"><i class="ti ti-x"></i></button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Camila</td>
-                        <td>(11) 97777-7777</td>
-                        <td>Alongamento</td>
-                        <td>28/05/26</td>
-                        <td>R$ 2.300,00</td>
-                        <td>
-                            <p class="visitas">15x</p>
-                        </td>
-                        <td><button class="btn-ver"><i class="ti ti-eye"></i> Ver</button></td>
-                        <td><button class="btn-apagar"><i class="ti ti-x"></i></button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Juliana</td>
-                        <td>(11) 96666-6666</td>
-                        <td>Banho de gel</td>
-                        <td>30/05/26</td>
-                        <td>R$ 450,00</td>
-                        <td>
-                            <p class="visitas">5x</p>
-                        </td>
-                        <td><button class="btn-ver"><i class="ti ti-eye"></i> Ver</button></td>
-                        <td><button class="btn-apagar"><i class="ti ti-x"></i></button></td>
-                    </tr>
-
-                    <tr>
-                        <td>Fernanda</td>
-                        <td>(11) 95555-5555</td>
-                        <td>Coloração</td>
-                        <td>02/06/26</td>
-                        <td>R$ 1.890,00</td>
-                        <td>
-                            <p class="visitas">10x</p>
-                        </td>
-                        <td><button class="btn-ver"><i class="ti ti-eye"></i> Ver</button></td>
-                        <td><button class="btn-apagar"><i class="ti ti-x"></i></button></td>
-                    </tr>
-                </tbody>
-
-            </table>
-        </div>
+        <section class="clientes-conteudo" aria-label="Lista de clientes">
+            <div class="busca">
+                <input class="campo-busca" id="busca-cliente" type="search" placeholder="Buscar cliente" aria-label="Buscar cliente por nome ou telefone">
+                <i class="ti ti-search" aria-hidden="true"></i>
+            </div>
+            <p class="mensagem-clientes" id="erro-clientes" role="alert" hidden></p>
+            <div class="clientes-grid" id="lista-clientes">
+                <article class="cliente-card" data-id="maria" data-nome="Maria" data-telefone="(11) 99999-9999">
+                    <div class="cliente-card-info">
+                        <h2>Maria</h2>
+                        <p>(11) 99999-9999</p>
+                    </div>
+                    <a class="btn-ver-cliente" href="client-details.html?id=maria" aria-label="Ver informações de Maria">
+                        <span>Mais informações</span><i class="ti ti-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+                <article class="cliente-card" data-id="ana" data-nome="Ana" data-telefone="(11) 88888-8888">
+                    <div class="cliente-card-info">
+                        <h2>Ana</h2>
+                        <p>(11) 88888-8888</p>
+                    </div>
+                    <a class="btn-ver-cliente" href="client-details.html?id=ana" aria-label="Ver informações de Ana">
+                        <span>Mais informações</span><i class="ti ti-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+                <article class="cliente-card" data-id="camila" data-nome="Camila" data-telefone="(11) 97777-7777">
+                    <div class="cliente-card-info">
+                        <h2>Camila</h2>
+                        <p>(11) 97777-7777</p>
+                    </div>
+                    <a class="btn-ver-cliente" href="client-details.html?id=camila" aria-label="Ver informações de Camila">
+                        <span>Mais informações</span><i class="ti ti-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+                <article class="cliente-card" data-id="juliana" data-nome="Juliana" data-telefone="(11) 96666-6666">
+                    <div class="cliente-card-info">
+                        <h2>Juliana</h2>
+                        <p>(11) 96666-6666</p>
+                    </div>
+                    <a class="btn-ver-cliente" href="client-details.html?id=juliana" aria-label="Ver informações de Juliana">
+                        <span>Mais informações</span><i class="ti ti-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+                <article class="cliente-card" data-id="fernanda" data-nome="Fernanda" data-telefone="(11) 95555-5555">
+                    <div class="cliente-card-info">
+                        <h2>Fernanda</h2>
+                        <p>(11) 95555-5555</p>
+                    </div>
+                    <a class="btn-ver-cliente" href="client-details.html?id=fernanda" aria-label="Ver informações de Fernanda">
+                        <span>Mais informações</span><i class="ti ti-arrow-up-right" aria-hidden="true"></i>
+                    </a>
+                </article>
+            </div>
+            <p class="mensagem-clientes" id="nenhum-cliente" hidden>Nenhum cliente encontrado.</p>
+        </section>
     </main>
 
-    <!-- Modal para adicionar novos clientes -->
     <div class="overlay" id="overlay-add-cliente">
         <div class="modal modal-add-cliente">
             <div class="modal-header">
                 <h1>Adicionar nova cliente</h1>
-                <button class="fechar" id="fechar-modal">
+                <button class="fechar" id="fechar-modal" type="button" aria-label="Fechar">
                     <i class="ti ti-x"></i>
                 </button>
             </div>
-            <form class="form-add-cliente">
+            <form class="form-add-cliente" id="form-add-cliente">
                 <div class="campo">
-                    <label>Cliente:</label>
+                    <label for="nome">Cliente</label>
                     <input id="nome" type="text" placeholder="Nome da cliente" required>
                 </div>
                 <div class="campo">
-                    <label>Telefone:</label>
+                    <label for="tel">Telefone</label>
                     <input id="tel" type="tel" placeholder="Telefone da cliente" maxlength="15" required>
                 </div>
                 <div class="campo">
-                    <label>Data de Nascimento:</label>
-                    <input id="dataNascimento" type="text" placeholder="dd/mm/aaaa" maxlength="10">
-                </div>
-                <div class="campo">
-                    <label>Observações</label>
+                    <label for="obs">Observações</label>
                     <textarea id="obs" rows="4" placeholder="Digite alguma observação..."></textarea>
                 </div>
                 <div class="acoes">
@@ -145,86 +106,6 @@
             </form>
         </div>
     </div>
-
-    <!-- Modal para ver informações de um cliente -->
-    <div class="overlay" id="overlay-ver-cliente">
-        <div class="modal modal-ver">
-            <div class="modal-header">
-                <h1>Mais informações</h1>
-                <button class="fechar" id="fechar-modal-ver">
-                    <i class="ti ti-x"></i>
-                </button>
-            </div>
-            <form class="form-ver">
-                <div class="campo-info">
-                    <label>Cliente:</label>
-                    <input class="campo" type="text" value="Nome da cliente" disabled>
-                    <i class="ti ti-pencil editar"></i>
-                </div>
-                <div class="campo-info">
-                    <label>Telefone:</label>
-                    <input class="campo" type="tel" value="(99) 99999-9999" maxlength="15" disabled>
-                    <i class="ti ti-pencil editar"></i>
-                </div>
-                <div class="campo-info">
-                    <label>Data de nascimento:</label>
-                    <input class="campo" type="text" value="00/00/0000" maxlength="10" disabled>
-                    <i class="ti ti-pencil editar"></i>
-                </div>
-                <div class="campo-info text">
-                    <label>Observações:</label>
-                    <textarea class="campo" rows="4" disabled>Nenhuma observação.</textarea>
-                    <i class="ti ti-pencil editar"></i>
-                </div>
-                <div class="lista-atendimentos">
-                    <h1 class="titulo-historico">Histórico de serviços</h1>
-                    <div class="atendimento">
-                        <div class="l1">
-                            <p class="info1">Procedimento</p>
-                            <p class="info2">&#8226 Profissional</p>
-                        </div>
-                        <div class="l2">
-                            <p class="info3">11/06/2026</p>
-                            <p class="info4">R$35,00</p>
-                        </div>
-                    </div>
-                    <div class="atendimento">
-                        <div class="l1">
-                            <p class="info1">Procedimento</p>
-                            <p class="info2">&#8226 Profissional</p>
-                        </div>
-                        <div class="l2">
-                            <p class="info3">11/06/2026</p>
-                            <p class="info4">R$35,00</p>
-                        </div>
-                    </div>
-                    <div class="atendimento">
-                        <div class="l1">
-                            <p class="info1">Procedimento</p>
-                            <p class="info2">&#8226 Profissional</p>
-                        </div>
-                        <div class="l2">
-                            <p class="info3">11/06/2026</p>
-                            <p class="info4">R$35,00</p>
-                        </div>
-                    </div>
-                    <p class="mais">Ver mais</p>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal para confirmar a exclusão de um cliente da lista -->
-    <div class="overlay" id="overlay-apagar">
-        <div class="modal modal-apagar">
-            <h1>Excluir cliente?</h1>
-            <div class="opcoes">
-                <button id="confirmar-excluir">Confirmar</button>
-                <button id="cancelar-excluir">Cancelar</button>
-            </div>
-        </div>
-    </div>
-
 </body>
 
 </html>

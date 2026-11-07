@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/menu.js" defer></script>
+    <script src="../js/clients.js" defer></script>
+    <title>Informações da cliente</title>
+</head>
+
+<body>
+    <div id="menu"></div>
+    <main>
+        <header class="header">
+            <div>
+                <p class="nome-page">Informações da cliente</p>
+                <p class="data" id="data">Data</p>
+            </div>
+        </header>
+
+        <section class="cliente-detalhes-conteudo" id="detalhes-cliente" hidden>
+            <div class="cliente-detalhe-topo">
+                <div>
+                    <h1 id="titulo-cliente"></h1>
+                </div>
+                <div class="cliente-acoes">
+                    <button class="btn-excluir-cliente" type="button">
+                        <i class="ti ti-trash" aria-hidden="true"></i> Excluir cliente
+                    </button>
+                </div>
+            </div>
+
+            <div class="informacoes-cliente">
+                <form class="cliente-form-detalhes" id="form-detalhes-cliente">
+                    <div class="cliente-dados-grid">
+                        <div class="campo">
+                            <label for="detalhe-nome">Nome</label>
+                            <input id="detalhe-nome" type="text" required>
+                        </div>
+                        <div class="campo">
+                            <label for="detalhe-telefone">Telefone</label>
+                            <input id="detalhe-telefone" type="tel" maxlength="15" required>
+                        </div>
+                        <div class="campo cliente-observacoes">
+                            <label for="detalhe-observacoes">Observações</label>
+                            <textarea id="detalhe-observacoes" rows="3"></textarea>
+                        </div>
+                    </div>
+                </form>
+
+                <section class="indicadores-cliente" aria-label="Indicadores da cliente">
+                    <article class="indicador-cliente">
+                        <span class="indicador-icone"><i class="ti ti-cash" aria-hidden="true"></i></span>
+                        <div>
+                            <p>Total gasto</p>
+                            <strong>R$ 1.250,00</strong>
+                        </div>
+                    </article>
+                    <article class="indicador-cliente">
+                        <span class="indicador-icone"><i class="ti ti-history" aria-hidden="true"></i></span>
+                        <div>
+                            <p>Serviços realizados</p>
+                            <strong>7</strong>
+                        </div>
+                    </article>
+                    <article class="indicador-cliente">
+                        <span class="indicador-icone"><i class="ti ti-calendar-time" aria-hidden="true"></i></span>
+                        <div>
+                            <p>Último serviço</p>
+                            <strong>04/11/2026</strong>
+                        </div>
+                    </article>
+                </section>
+            </div>
+
+            <section class="historico-cliente" aria-labelledby="titulo-historico">
+                <div class="historico-cabecalho">
+                    <div>
+                        <h2 id="titulo-historico">Histórico de serviços</h2>
+                        <p>Serviços concluídos vinculados a esta cliente</p>
+                    </div>
+                    <label class="ordenacao-historico" for="ordenacao-historico">
+                        <select id="ordenacao-historico">
+                            <option value="recentes">Mais recentes</option>
+                            <option value="antigos">Mais antigos</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="filtros-historico">
+                    <div class="campo">
+                        <label for="data-inicial-historico">Data inicial</label>
+                        <input id="data-inicial-historico" type="date">
+                    </div>
+                    <div class="campo">
+                        <label for="data-final-historico">Data final</label>
+                        <input id="data-final-historico" type="date">
+                    </div>
+                </div>
+                <div class="historico-vazio">
+                    <i class="ti ti-calendar-off" aria-hidden="true"></i>
+                    <p>Nenhum serviço concluído <br> vinculado a esta cliente.</p>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+
+</html>

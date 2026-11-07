@@ -1,169 +1,179 @@
-const overlayClientes = document.getElementById("overlay-add-cliente")
-const abrirModalClientes = document.getElementById("abrir-modal")
-const fecharModalClientes = document.getElementById("fechar-modal")
-const formClientes = document.querySelector(".form-add-cliente")
+(() => {
+    const storageKey = "beautyStudio.clients.v1";
+    const list = document.getElementById("lista-clientes");
+    const detailForm = document.getElementById("form-detalhes-cliente");
 
-// funções de abrir e fechar modais
-function abrirModal(overlay) {
-    overlay.classList.add("abrir");
-    document.body.style.overflow = "hidden"; // impede que a página role quando o modal estiver aberto
-}
-
-function fecharModal(overlay, form = null) {
-    overlay.classList.remove("abrir");
-    document.body.style.overflow = "auto"; // desbloqueia a rolagem
-
-    if (form) {
-        form.reset(); // apaga as informações do formulário
-    }
-}
-
-// Modal de adicionar novas clientes
-abrirModalClientes.addEventListener("click", () => {
-    abrirModal(overlayClientes);
-});
-
-fecharModalClientes.addEventListener("click", () => {
-    fecharModal(overlayClientes, formClientes);
-});
-
-// Modal de ver mais informações da cliente
-
-const overlayInfos = document.getElementById("overlay-ver-cliente")
-const btnVerClientes = document.querySelectorAll(".btn-ver")
-const fecharModalInfos = document.getElementById("fechar-modal-ver")
-const formInfos = document.querySelector(".form-ver")
-
-function configurarBtnVer(botao) {
-    botao.addEventListener("click", () => {
-        abrirModal(overlayInfos);
-    });
-}
-
-btnVerClientes.forEach(configurarBtnVer);
-
-fecharModalInfos.addEventListener("click", () => {
-    fecharModal(overlayInfos, formInfos);
-});
-
-// Formatação do número de telefone
-
-const tel = document.getElementById("tel");
-
-tel.addEventListener("input", (e) => {
-    let valor = e.target.value.replace(/\D/g, "");
-    valor = valor.replace(/^(\d{2})(\d)/, "($1) $2");
-    valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
-    e.target.value = valor;
-});
-
-// Formatação da data de nascimento
-
-const dataNascimento = document.getElementById("dataNascimento");
-
-dataNascimento.addEventListener("input", (e) => {
-    let valor = e.target.value.replace(/\D/g, "");
-    valor = valor.replace(/^(\d{2})(\d)/, "$1/$2");
-    valor = valor.replace(/^(\d{2})\/(\d{2})(\d)/, "$1/$2/$3");
-    e.target.value = valor;
-});
-
-
-// Permite editar as infromações 
-
-const btnEditar = document.querySelectorAll('.editar');
-
-btnEditar.forEach((botao) => {
-    botao.addEventListener('click', () => {
-        const container = botao.parentElement;
-        const campo = container.querySelector('.campo');
-
-        const desabilitado = campo.disabled;
-
-        if (desabilitado) {
-            // entra no modo de edição
-            campo.disabled = false;
-
-            // muda o icone
-            botao.classList.remove('ti-pencil');
-            botao.classList.add('ti-check');
-        } else {
-            // salva e sai do modo de edição
-            campo.disabled = true;
-
-            // volta ícone para lápis
-            botao.classList.remove('ti-check');
-            botao.classList.add('ti-pencil');
+    function lerClientes() {
+        const dados = localStorage.getItem(storageKey);
+        const clientes = dados ? JSON.parse(dados) : [];
+        if (!Array.isArray(clientes) || clientes.some(cliente =>
+            !cliente
+            || typeof cliente.id !== "string"
+            || typeof cliente.nome !== "string"
+            || typeof cliente.telefone !== "string"
+            || typeof cliente.observacoes !== "string"
+        )) {
+            throw new Error("Os cadastros de clientes armazenados estão inválidos.");
         }
-    });
-});
-
-
-// Modal de confirmação para excluir clientes
-
-const btnExcluirCliente = document.querySelectorAll('.btn-apagar');
-const overlayApagar = document.getElementById('overlay-apagar');
-const btnCancelar = document.getElementById('cancelar-excluir');
-const btnConfirmar = document.getElementById('confirmar-excluir');
-let clienteExcluir = null;
-
-function configurarBtnExcluir(botao){
-    botao.addEventListener("click", () => {
-        abrirModal(overlayApagar);
-        // guarda a linha do botão clicado
-        clienteExcluir = botao.closest("tr");
-    });
-};
-
-btnExcluirCliente.forEach(configurarBtnExcluir);
-
-btnCancelar.addEventListener("click", () => {
-    fecharModal(overlayApagar);
-});
-
-// Apaga a linha
-btnConfirmar.addEventListener("click", () => {
-    if (clienteExcluir) { // verifica se tem algo na linha
-        clienteExcluir.remove(); // remove a linha
+        return clientes;
     }
 
-    fecharModal(overlayApagar); // fecha o modal
-    clienteExcluir = null;
-});
+    function salvarClientes(clientes) {
+        localStorage.setItem(storageKey, JSON.stringify(clientes));
+    }
 
+    function criarId() {
+        return crypto.randomUUID
+            ? crypto.randomUUID()
+            : `cliente-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    }
 
-// Adicionar um novo cliente na tabela
+    function mostrarData() {
+        const agora = new Date();
+        const data = agora.toLocaleDateString("pt-BR", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
+        const campoData = document.getElementById("data");
+        if (campoData) campoData.textContent = `${data.charAt(0).toLocaleUpperCase("pt-BR")}${data.slice(1)}`;
+    }
 
-const inputNome = document.getElementById('nome');
-const inputTel = document.getElementById('tel');
-const inputData = document.getElementById('dataNascimento');
-const textObs = document.getElementById('obs');
-const tabelaClientes = document.querySelector('#tabelaClientes tbody');
+    function formatarTelefone(campo) {
+        let valor = campo.value.replace(/\D/g, "").slice(0, 11);
+        valor = valor.replace(/^(\d{2})(\d)/, "($1) $2");
+        valor = valor.replace(/(\d{5})(\d)/, "$1-$2");
+        campo.value = valor;
+    }
 
-formClientes.addEventListener("submit", (e) => {
-    e.preventDefault(); // impede que recarregue
+    function formatarNascimento(campo) {
+        let valor = campo.value.replace(/\D/g, "").slice(0, 8);
+        valor = valor.replace(/^(\d{2})(\d)/, "$1/$2");
+        valor = valor.replace(/^(\d{2})\/(\d{2})(\d)/, "$1/$2/$3");
+        campo.value = valor;
+    }
 
-    // pega os valores
-    const nome = inputNome.value;
-    const telefone = inputTel.value;
-    const data = inputData.value;
-    const observacoes = textObs.value;
+    mostrarData();
 
-    // adiciona nova linha
-    const novaLinha = document.createElement("tr");
-    novaLinha.innerHTML = 
-    `<td>${nome}</td>
-    <td>${telefone}</td>
-    <td>—</td>
-    <td>—</td>
-    <td>R$ 0,00</td>
-    <td><p class="visitas">0x</p></td>
-    <td><button class="btn-ver"><i class="ti ti-eye"></i> Ver</button></td>
-    <td><button class="btn-apagar"><i class="ti ti-x"></i></button></td>`;
-    tabelaClientes.appendChild(novaLinha);
-    const btnVer = novaLinha.querySelector(".btn-ver");
-    configurarBtnVer(btnVer);
-    const btnExcluir = novaLinha.querySelector(".btn-apagar");
-    configurarBtnExcluir(btnExcluir);
-    fecharModal(overlayClientes, formClientes);
-});
+    if (list) {
+        const search = document.getElementById("busca-cliente");
+        const empty = document.getElementById("nenhum-cliente");
+        const overlay = document.getElementById("overlay-add-cliente");
+        const form = document.getElementById("form-add-cliente");
+        const addButton = document.getElementById("abrir-modal");
+        const closeButton = document.getElementById("fechar-modal");
+
+        function renderizarClientes(clientes) {
+            list.replaceChildren();
+            clientes.forEach(cliente => {
+                const card = document.createElement("article");
+                card.className = "cliente-card";
+
+                const info = document.createElement("div");
+                info.className = "cliente-card-info";
+                const nome = document.createElement("h2");
+                nome.textContent = cliente.nome;
+                const telefone = document.createElement("p");
+                telefone.textContent = cliente.telefone;
+                info.append(nome, telefone);
+
+                const link = document.createElement("a");
+                link.className = "btn-ver-cliente";
+                link.href = `./client-details.html?id=${encodeURIComponent(cliente.id)}`;
+                link.setAttribute("aria-label", `Ver informações de ${cliente.nome}`);
+                const texto = document.createElement("span");
+                texto.textContent = "Mais informações";
+                const icone = document.createElement("i");
+                icone.className = "ti ti-arrow-up-right";
+                icone.setAttribute("aria-hidden", "true");
+                link.append(texto, icone);
+                card.append(info, link);
+                list.appendChild(card);
+            });
+            empty.hidden = clientes.length > 0;
+        }
+
+        let clientes = lerClientes();
+        if (!clientes.length) {
+            clientes = Array.from(list.querySelectorAll(".cliente-card")).map(card => ({
+                id: card.dataset.id,
+                nome: card.dataset.nome,
+                telefone: card.dataset.telefone,
+                observacoes: ""
+            }));
+            salvarClientes(clientes);
+        }
+        renderizarClientes(clientes);
+
+        search.addEventListener("input", () => {
+            const termo = search.value.trim().toLocaleLowerCase("pt-BR");
+            renderizarClientes(clientes.filter(cliente =>
+                `${cliente.nome} ${cliente.telefone}`.toLocaleLowerCase("pt-BR").includes(termo)
+            ));
+        });
+
+        function fecharModal() {
+            overlay.classList.remove("abrir");
+            document.body.style.overflow = "";
+            form.reset();
+        }
+
+        addButton.addEventListener("click", () => {
+            overlay.classList.add("abrir");
+            document.body.style.overflow = "hidden";
+        });
+        closeButton.addEventListener("click", fecharModal);
+        overlay.addEventListener("click", evento => {
+            if (evento.target === overlay) fecharModal();
+        });
+        document.getElementById("tel").addEventListener("input", evento => {
+            formatarTelefone(evento.currentTarget);
+        });
+        document.getElementById("dataNascimento").addEventListener("input", evento => {
+            formatarNascimento(evento.currentTarget);
+        });
+
+        form.addEventListener("submit", evento => {
+            evento.preventDefault();
+            const nome = document.getElementById("nome").value.trim();
+            const telefone = document.getElementById("tel").value.trim();
+            if (!nome || !telefone) return;
+
+            const cliente = {
+                id: criarId(),
+                nome,
+                telefone,
+                observacoes: document.getElementById("obs").value.trim()
+            };
+            clientes = [...clientes, cliente];
+            salvarClientes(clientes);
+            renderizarClientes(clientes);
+            fecharModal();
+        });
+    }
+
+    if (!detailForm) return;
+
+    const clienteId = new URLSearchParams(window.location.search).get("id");
+    const clientes = lerClientes();
+    const cliente = clientes.find(item => item.id === clienteId);
+    const detalhes = document.getElementById("detalhes-cliente");
+
+    if (!cliente) return;
+
+    detalhes.hidden = false;
+    document.title = `${cliente.nome} | Informações da cliente`;
+    document.getElementById("titulo-cliente").textContent = cliente.nome;
+    const nome = document.getElementById("detalhe-nome");
+    const telefone = document.getElementById("detalhe-telefone");
+    const observacoes = document.getElementById("detalhe-observacoes");
+
+    function preencherFormulario() {
+        nome.value = cliente.nome;
+        telefone.value = cliente.telefone;
+        observacoes.value = cliente.observacoes;
+    }
+
+    preencherFormulario();
+})();
