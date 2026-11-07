@@ -61,8 +61,33 @@
                         <button class="btn-editar" title="Editar">
                             <i class="ti ti-pencil"></i>
                         </button>
-                        <button class="btn-excluir" title="Excluir">
-                            <i class="ti ti-trash"></i>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="linha-agenda">
+                <div class="linha-hora">
+                    <p>00:00</p>
+                </div>
+
+                <div class="linha-cliente" data-status="naoiniciado">
+
+                    <div class="info-agendamento">
+                        <p class="cliente">Cliente</p>
+                        <p class="procedimento">Procedimento</p>
+                        <p class="profissional">
+                            <i class="ti ti-users"></i>
+                            Profissional
+                        </p>
+                    </div>
+
+                    <div class="acoes-agendamento">
+                        <button class="btn-status">
+                            Iniciar procedimento
+                        </button>
+                        <button class="btn-editar" title="Editar">
+                            <i class="ti ti-pencil"></i>
                         </button>
                     </div>
 
@@ -92,8 +117,33 @@
                         <button class="btn-editar" title="Editar">
                             <i class="ti ti-pencil"></i>
                         </button>
-                        <button class="btn-excluir" title="Excluir">
-                            <i class="ti ti-trash"></i>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="linha-agenda">
+                <div class="linha-hora">
+                    <p>00:00</p>
+                </div>
+
+                <div class="linha-cliente" data-status="naoiniciado">
+
+                    <div class="info-agendamento">
+                        <p class="cliente">Cliente</p>
+                        <p class="procedimento">Procedimento</p>
+                        <p class="profissional">
+                            <i class="ti ti-users"></i>
+                            Profissional
+                        </p>
+                    </div>
+
+                    <div class="acoes-agendamento">
+                        <button class="btn-status">
+                            Iniciar procedimento
+                        </button>
+                        <button class="btn-editar" title="Editar">
+                            <i class="ti ti-pencil"></i>
                         </button>
                     </div>
 
@@ -123,9 +173,6 @@
                         <button class="btn-editar" title="Editar">
                             <i class="ti ti-pencil"></i>
                         </button>
-                        <button class="btn-excluir" title="Excluir">
-                            <i class="ti ti-trash"></i>
-                        </button>
                     </div>
 
                 </div>
@@ -153,71 +200,6 @@
                         </button>
                         <button class="btn-editar" title="Editar">
                             <i class="ti ti-pencil"></i>
-                        </button>
-                        <button class="btn-excluir" title="Excluir">
-                            <i class="ti ti-trash"></i>
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="linha-agenda">
-                <div class="linha-hora">
-                    <p>00:00</p>
-                </div>
-
-                <div class="linha-cliente" data-status="naoiniciado">
-
-                    <div class="info-agendamento">
-                        <p class="cliente">Cliente</p>
-                        <p class="procedimento">Procedimento</p>
-                        <p class="profissional">
-                            <i class="ti ti-users"></i>
-                            Profissional
-                        </p>
-                    </div>
-
-                    <div class="acoes-agendamento">
-                        <button class="btn-status">
-                            Iniciar procedimento
-                        </button>
-                        <button class="btn-editar" title="Editar">
-                            <i class="ti ti-pencil"></i>
-                        </button>
-                        <button class="btn-excluir" title="Excluir">
-                            <i class="ti ti-trash"></i>
-                        </button>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="linha-agenda">
-                <div class="linha-hora">
-                    <p>00:00</p>
-                </div>
-
-                <div class="linha-cliente" data-status="naoiniciado">
-
-                    <div class="info-agendamento">
-                        <p class="cliente">Cliente</p>
-                        <p class="procedimento">Procedimento</p>
-                        <p class="profissional">
-                            <i class="ti ti-users"></i>
-                            Profissional
-                        </p>
-                    </div>
-
-                    <div class="acoes-agendamento">
-                        <button class="btn-status">
-                            Iniciar procedimento
-                        </button>
-                        <button class="btn-editar" title="Editar">
-                            <i class="ti ti-pencil"></i>
-                        </button>
-                        <button class="btn-excluir" title="Excluir">
-                            <i class="ti ti-trash"></i>
                         </button>
                     </div>
 
@@ -239,29 +221,57 @@
                 </button>
             </div>
             <form>
-                <div class="resumo-atend">
+                <div class="resumo-atend" aria-live="polite">
                     <div class="linha-resumo">
-                        <p>Cliente:</p> Maria Silva
+                        <p>Cliente</p>
+                        <span id="resumo-cliente">-</span>
+                    </div>
+                    <div class="linha-resumo linha-resumo-procedimentos">
+                        <div class="titulo-resumo-procedimentos">
+                            <p>Serviços realizados</p>
+                            <span id="quantidade-procedimentos" class="quantidade-procedimentos"></span>
+                        </div>
+                        <ul id="resumo-procedimentos" class="lista-resumo-procedimentos"></ul>
                     </div>
                     <div class="linha-resumo">
-                        <p>Procedimento:</p> Progressiva
+                        <p>Profissional</p>
+                        <span id="resumo-profissional">-</span>
                     </div>
                     <div class="linha-resumo">
-                        <p>Profissional:</p> Val
+                        <p>Valor</p>
+                        <span id="resumo-valor">Informe o valor</span>
                     </div>
                 </div>
                 <div class="campo">
-                    <label class="titulo">Forma de pagamento</label>
-                    <select>
-                        <option>Pix</option>
-                        <option>Cartão (débito)</option>
-                        <option>Cartão (crédito)</option>
-                        <option>Dinheiro</option>
+                    <label class="titulo" for="formaPagamento">Forma de pagamento</label>
+                    <select id="formaPagamento">
+                        <option value="pix">Pix</option>
+                        <option value="debito">Cartão (débito)</option>
+                        <option value="credito">Cartão (crédito)</option>
+                        <option value="dinheiro">Dinheiro</option>
                     </select>
                 </div>
                 <div class="campo">
-                    <label class="titulo">Valor</label>
-                    <input type="text" id="valorPagamento">
+                    <label class="titulo" for="valorPagamento">Valor recebido</label>
+                    <input type="text" id="valorPagamento" inputmode="decimal" placeholder="R$ 0,00">
+                </div>
+                <div class="campo" id="campoParcelas" hidden>
+                    <label class="titulo" for="parcelasPagamento">Parcelas</label>
+                    <select id="parcelasPagamento">
+                        <option value="1">1x</option>
+                        <option value="2">2x</option>
+                        <option value="3">3x</option>
+                        <option value="4">4x</option>
+                        <option value="5">5x</option>
+                        <option value="6">6x</option>
+                        <option value="7">7x</option>
+                        <option value="8">8x</option>
+                        <option value="9">9x</option>
+                        <option value="10">10x</option>
+                        <option value="11">11x</option>
+                        <option value="12">12x</option>
+                    </select>
+                    <small id="valorParcela"></small>
                 </div>
                 <div class="erro-pagamento" id="erroPagamento">
                     Digite um valor válido
@@ -290,62 +300,35 @@
             <form class="form-agendamento">
                 <div class="campo">
                     <label>Cliente</label>
-                    <input type="text" placeholder="Nome da cliente">
+                    <input type="text" id="cliente-agendamento" placeholder="Nome da cliente">
                 </div>
 
                 <div class="campo">
-                    <label>Procedimento</label>
-
-                    <select id="procedimento">
-                        <option selected disabled>
-                            Selecione um procedimento
-                        </option>
-                        <optgroup label="Cabelo">
-                            <option>Progressiva</option>
-                            <option>Coloração</option>
-                            <option>Escova</option>
-                        </optgroup>
-                        <optgroup label="Unhas">
-                            <option>Alongamento</option>
-                            <option>Banho de gel</option>
-                            <option>Mão</option>
-                        </optgroup>
-                    </select>
                     <div id="lista-procedimentos"></div>
-                </div>
-
-                <div class="campo">
-                    <label>Profissional</label>
-
-                    <select>
-                        <option selected disabled>
-                            Selecione uma profissional
-                        </option>
-                        <option>Anny</option>
-                        <option>Val</option>
-                        <option>Anny e Val</option>
-                    </select>
+                    <button type="button" class="btn-adicionar-procedimento" id="adicionar-procedimento">
+                        Adicionar procedimento
+                    </button>
                 </div>
 
                 <div class="linha-form">
 
                     <div class="campo">
                         <label>Data</label>
-                        <input type="date">
+                        <input type="date" id="data-agendamento">
                     </div>
                     <div class="campo">
                         <label>Horário</label>
-                        <input type="time">
+                        <input type="time" id="horario-agendamento">
                     </div>
                 </div>
 
                 <div class="campo">
                     <label>Valor</label>
-                    <input type="text" placeholder="R$ 0,00">
+                    <input type="text" id="valor-agendamento" inputmode="decimal" placeholder="R$ 0,00">
                 </div>
                 <div class="campo">
                     <label>Observações</label>
-                    <textarea rows="4" placeholder="Digite alguma observação..."></textarea>
+                    <textarea id="observacoes-agendamento" rows="4" placeholder="Digite alguma observação..."></textarea>
                 </div>
                 <div class="acoes">
                     <button type="button" class="cancelar">
@@ -359,38 +342,61 @@
         </div>
     </div>
 
-    <div class="overlay" id="overlay-edt-naoiniciado">
+    <div class="overlay" id="overlay-edt-agendamento">
         <div class="modal modal-edt-agenda">
             <div class="modal-header">
-                <h1>Editar Agendamento</h1> <button class="fechar fechar-modal-edt"> <i class="ti ti-x"></i> </button>
-            </div>
-            <div class="conteudo-modal-status">
-                <p>Modal para agendamento não iniciado</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="overlay" id="overlay-edt-emandamento">
-        <div class="modal modal-edt-agenda">
-            <div class="modal-header">
-                <h1>Em andamento</h1> <button class="fechar fechar-modal-edt"> <i class="ti ti-x"></i>
+                <h1 id="titulo-edt-agendamento">Detalhes do atendimento</h1>
+                <button class="fechar fechar-modal-edt" type="button" aria-label="Fechar">
+                    <i class="ti ti-x"></i>
                 </button>
             </div>
-            <div class="conteudo-modal-status">
-                <p>Modal para agendamento em andamento</p>
-            </div>
-        </div>
-    </div>
 
-    <div class="overlay" id="overlay-edt-concluido">
-        <div class="modal modal-edt-agenda">
-            <div class="modal-header">
-                <h1>Agendamento concluído</h1> <button class="fechar fechar-modal-edt"> <i class="ti ti-x"></i>
-                </button>
-            </div>
-            <div class="conteudo-modal-status">
-                <p>Modal para agendamento concluído</p>
-            </div>
+            <form class="edt-form-agendamento">
+                <section class="relatorio-atendimento" aria-label="Relatório do atendimento" hidden></section>
+                <div class="edt-campos">
+                    <div class="campo">
+                        <label for="edt-cliente">Cliente</label>
+                        <input type="text" id="edt-cliente" placeholder="Nome da cliente" required>
+                    </div>
+
+                    <div class="campo">
+                        <div id="edt-lista-procedimentos"></div>
+                        <button type="button" class="btn-adicionar-procedimento" id="edt-adicionar-procedimento">
+                            Adicionar procedimento
+                        </button>
+                    </div>
+
+                    <div class="linha-form">
+                        <div class="campo">
+                            <label for="edt-data">Data</label>
+                            <input type="date" id="edt-data" required>
+                        </div>
+                        <div class="campo">
+                            <label for="edt-horario">Horário</label>
+                            <input type="time" id="edt-horario" required>
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <label for="edt-valor">Valor</label>
+                        <input type="text" id="edt-valor" inputmode="decimal" placeholder="R$ 0,00">
+                    </div>
+                    <div class="campo">
+                        <label for="edt-observacoes">Observações</label>
+                        <textarea id="edt-observacoes" rows="4" placeholder="Digite alguma observação..."></textarea>
+                    </div>
+                </div>
+
+                <div class="acoes acoes-edt">
+                    <div class="excluir-atend">
+                        <button type="button" class="btn-excluir-atendimento">Excluir atendimento</button>
+                    </div>
+                    <div class="btns-modal-atend">
+                        <button type="button" class="cancelarEdt">Cancelar</button>
+                        <button type="submit" class="salvar">Salvar alterações</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     </div>
