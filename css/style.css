@@ -47,6 +47,10 @@ main {
     margin-left: 14.5rem;
 }
 
+.painel {
+    width: calc(100% - 14.5rem);
+}
+
 /* ---------- Menu lateral ---------- */
 
 .menu {
@@ -216,6 +220,7 @@ header button:hover {
 
 .cards {
     display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
     justify-content: center;
     margin: 2rem 3rem;
@@ -223,7 +228,8 @@ header button:hover {
 
 .card {
     background-color: white;
-    width: 17.5rem;
+    flex: 1 1 15rem;
+    min-width: 0;
     height: 10rem;
     border-radius: 10px;
     box-shadow: var(--sombra-card);
@@ -273,7 +279,7 @@ header button:hover {
 .cards2 {
     justify-content: space-between;
     display: flex;
-    padding: var(--page-padding);
+    padding: 0px 3rem;
     gap: 2rem;
 }
 
@@ -1118,8 +1124,8 @@ header button:hover {
 /* ---------- Página de controle finançeiro ---------- */
 
 .cards-f {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
     margin: var(--page-padding);
     margin-bottom: 2rem;
@@ -1128,7 +1134,7 @@ header button:hover {
 .card-f {
     background-color: white;
     flex: 1;
-    height: 10rem;
+    min-height: 10rem;
     border: var(--borda-card);
     box-shadow: var(--sombra-card);
     border-radius: 10px;
@@ -1174,28 +1180,71 @@ header button:hover {
     background-color: white;
     border-radius: 16px;
     padding: 1.5rem;
-    padding-bottom: 2.6rem;
     border: var(--borda-card);
     box-shadow: var(--sombra-card);
     flex: 1;
-    height: 330px;
+    min-width: 0;
     position: relative;
 }
 
-.grafico-card canvas {
-    width: 100% !important;
-    height: 100% !important;
+.grafico-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }
 
-.grafico-card h3 {
-    margin-bottom: 1rem;
+.grafico-header h3 {
     font-family: var(--fonte2);
-    font-weight: 100;
+    font-weight: 500;
+    font-size: 1.35rem;
+    color: #30283b;
+}
+
+.grafico-header p,
+.tabela-header p {
+    color: var(--color-font3);
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.seletor-ano {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-font3);
+    font-size: 0.8rem;
+}
+
+.seletor-ano select,
+.controles-periodo select,
+.controles-periodo input {
+    min-height: 2.5rem;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--linha2);
+    border-radius: 9px;
+    background: white;
+    color: var(--color-font4);
+    font: inherit;
+}
+
+.seletor-ano select:focus,
+.controles-periodo select:focus,
+.controles-periodo input:focus {
+    outline: none;
+    border-color: #b89ad9;
+    box-shadow: var(--sombra-busca);
+}
+
+.grafico-area {
+    height: 290px;
+    position: relative;
 }
 
 .cards-f-2 {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: flex-start;
     gap: 2rem;
     padding: var(--page-padding);
@@ -1206,8 +1255,8 @@ header button:hover {
 /* ===== Tabelas de rendimento mensal e total de atendimentos por profissional ===== */
 
 .tabelas-financeiro {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 2rem;
     padding: var(--page-padding);
     padding-top: 0;
@@ -1216,7 +1265,8 @@ header button:hover {
 
 .tabelas-financeiro .tabela-card {
     background-color: white;
-    flex: 1;
+    flex: none;
+    min-width: 0;
     padding: 1.5rem;
     border-radius: 16px;
     border: var(--borda-card);
@@ -1224,38 +1274,406 @@ header button:hover {
 }
 
 .tabelas-financeiro .tabela-header {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
 }
 
 .tabelas-financeiro .tabela-header h3 {
     font-family: var(--fonte2);
-    font-weight: 100;
+    font-weight: 500;
     font-size: 1.3rem;
+    color: #30283b;
 }
 
 .tabelas-financeiro table {
     width: 100%;
-    border-collapse: collapse;
+    min-width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
 .tabelas-financeiro thead {
-    background-color: #f7f2ff;
+    background-color: #f8f5fc;
 }
 
 .tabelas-financeiro th {
-    padding: 1rem;
+    padding: 0.85rem 0.75rem;
     text-align: left;
+    font-size: 0.75rem;
     font-weight: 600;
     color: #6b5b95;
+    white-space: nowrap;
 }
 
 .tabelas-financeiro td {
-    padding: 1rem;
+    padding: 0.9rem 0.75rem;
     border-top: 1px solid #eee;
+    color: var(--color-font4);
+    font-size: 0.88rem;
 }
 
 .tabelas-financeiro tbody tr {
-    transition: 0.2s;
+    transition: background-color 0.2s ease;
+}
+
+.tabelas-financeiro tbody tr:hover {
+    background-color: #fcfaff;
+}
+
+.tabelas-financeiro .profissional {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-weight: 600;
+    color: #30283b;
+}
+
+.valor-coluna {
+    text-align: right !important;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.avatar-profissional {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    flex: 0 0 2rem;
+    border-radius: 50%;
+    background: #efe7f8;
+    color: var(--gr2);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.aviso-dados-erro {
+    border-color: #efcaca;
+    background: #fff5f5;
+    color: #9c3e3e;
+}
+
+/* ---------- Filtros e indicadores do financeiro ---------- */
+
+.relatorios-page main {
+    width: calc(100% - 14.5rem);
+}
+
+.resumo-periodo {
+    margin: 0 3rem 2rem;
+}
+
+.filtros-periodo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.controles-periodo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+}
+
+.controles-periodo label {
+    color: var(--color-font3);
+    font-size: 0.8rem;
+}
+
+.controles-periodo input {
+    min-width: 9.5rem;
+}
+
+.filtros-periodo h2 {
+    color: #30283b;
+    font-family: var(--fonte2);
+    font-size: 1.35rem;
+    font-weight: 500;
+}
+
+.filtros-periodo p {
+    margin-top: 0.3rem;
+    color: var(--color-font3);
+    font-size: 0.82rem;
+}
+
+.indicadores-periodo {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.indicador-periodo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0;
+    min-height: 7.5rem;
+    padding: 1.3rem 1.5rem;
+    border: var(--borda-card);
+    border-radius: 16px;
+    background: white;
+    box-shadow: var(--sombra-card);
+}
+
+.indicador-periodo > i {
+    display: grid;
+    place-items: center;
+    flex: 0 0 3rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 12px;
+    background: #f1eafa;
+    color: var(--gr2);
+    font-size: 1.35rem;
+}
+
+.indicador-periodo:first-child > i {
+    background: #edf8f1;
+    color: #388b63;
+}
+
+.indicador-periodo p {
+    color: var(--color-font3);
+    font-size: 0.82rem;
+}
+
+.indicador-periodo strong {
+    display: block;
+    margin-top: 0.2rem;
+    color: #30283b;
+    font-family: var(--fonte2);
+    font-size: 1.65rem;
+    font-weight: 600;
+}
+
+.indicador-periodo span {
+    display: block;
+    margin-top: 0.2rem;
+    color: var(--color-font3);
+    font-size: 0.75rem;
+}
+
+.tabelas-financeiro .tabela-responsiva .profissional {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: #30283b;
+    font-weight: 600;
+}
+
+.tabelas-financeiro .tabela-responsiva th:first-child,
+.tabelas-financeiro .tabela-responsiva th:last-child {
+    border-radius: 8px;
+}
+
+.tabelas-financeiro .tabela-responsiva th {
+    background: #f8f5fc;
+    color: #6b5b95;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.tabelas-financeiro .tabela-responsiva td {
+    padding: 0.95rem 0.75rem;
+    border-bottom: 1px solid #f0edf4;
+    color: var(--color-font4);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 1100px) {
+    .cards-f-2,
+    .tabelas-financeiro {
+        gap: 1rem;
+    }
+
+    .cards-f,
+    .cards-f-2,
+    .tabelas-financeiro {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+
+    .resumo-periodo {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+
+    .cards-f-2,
+    .tabelas-financeiro {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .aviso-dados {
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+    }
+}
+
+@media (max-width: 820px) {
+    .relatorios-page .menu {
+        width: 4.5rem;
+    }
+
+    .relatorios-page .menu .top,
+    .relatorios-page .menu h2,
+    .relatorios-page .menu .bottom > div:last-child {
+        display: none;
+    }
+
+    .relatorios-page .menu .middle {
+        padding-top: 1rem;
+    }
+
+    .relatorios-page .menu a {
+        justify-content: center;
+        padding: 1rem 0.5rem;
+        font-size: 0;
+    }
+
+    .relatorios-page .menu a i {
+        font-size: 1.3rem;
+    }
+
+    .relatorios-page .menu .bottom {
+        justify-content: center;
+        padding: 1rem 0.4rem;
+    }
+
+    .relatorios-page main {
+        width: calc(100% - 4.5rem);
+        margin-left: 4.5rem;
+    }
+
+    .cards-f-2,
+    .tabelas-financeiro {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .relatorios-page .menu {
+        top: auto;
+        bottom: 0;
+        width: 100%;
+        height: 3.75rem;
+        min-height: 0;
+        flex-direction: row;
+        z-index: 20;
+    }
+
+    .relatorios-page .menu .middle {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: stretch;
+        padding: 0;
+    }
+
+    .relatorios-page .menu a {
+        flex: 1;
+        border-left: 0;
+        border-top: 2px solid transparent;
+        padding: 0.6rem 0.25rem;
+    }
+
+    .relatorios-page .menu a:hover,
+    .relatorios-page .menu a.active {
+        border-left-color: transparent;
+        border-top-color: white;
+    }
+
+    .relatorios-page .menu .bottom {
+        display: none;
+    }
+
+    .relatorios-page main {
+        width: 100%;
+        margin-left: 0;
+        padding-bottom: 4.5rem;
+    }
+
+    .relatorios-page header.header {
+        padding: 1.25rem;
+    }
+
+    .relatorios-page .nome-page {
+        font-size: 1.35rem;
+    }
+
+    .cards-f {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+        margin: 1.25rem;
+    }
+
+    .card-f {
+        min-height: 8.5rem;
+        padding: 1.2rem;
+    }
+
+    .cards-f-2,
+    .tabelas-financeiro,
+    .resumo-periodo {
+        margin: 0 1.25rem 1.25rem;
+    }
+
+    .grafico-card,
+    .tabelas-financeiro .tabela-card {
+        padding: 1rem;
+    }
+
+    .grafico-header {
+        flex-direction: column;
+    }
+
+    .grafico-area {
+        height: 250px;
+    }
+
+    .tabelas-financeiro th,
+    .tabelas-financeiro td {
+        padding: 0.7rem 0.45rem;
+        font-size: 0.75rem;
+    }
+
+    .tabelas-financeiro .avatar-profissional,
+    .tabelas-financeiro .tabela-responsiva .avatar-profissional {
+        width: 1.7rem;
+        height: 1.7rem;
+        flex-basis: 1.7rem;
+    }
+
+    .filtros-periodo {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .controles-periodo {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .controles-periodo select,
+    .controles-periodo input {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .indicadores-periodo {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+        width: 100%;
+    }
+
+    .aviso-dados {
+        margin: 1rem 1.25rem;
+    }
+
 }
 
 
@@ -1419,7 +1837,6 @@ header button:hover {
 
 .cliente-detalhe-topo,
 .cliente-acoes,
-.cliente-acoes-edicao,
 .historico-cabecalho,
 .filtros-historico {
     display: flex;
@@ -1433,12 +1850,6 @@ header button:hover {
     color: #282431;
     font-family: var(--fonte2);
     font-weight: 400;
-}
-
-.rotulo-detalhe {
-    margin-bottom: 0.25rem;
-    color: var(--color-font3);
-    font-size: 0.8rem;
 }
 
 .cliente-acoes {
@@ -1472,15 +1883,6 @@ header button:hover {
 
 .cliente-observacoes {
     grid-column: 1 / -1;
-}
-
-.cliente-acoes-edicao {
-    justify-content: flex-end;
-    margin-top: 1rem;
-}
-
-.cliente-acoes-edicao[hidden] {
-    display: none;
 }
 
 .informacoes-cliente{

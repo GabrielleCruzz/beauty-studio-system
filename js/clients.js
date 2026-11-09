@@ -47,13 +47,6 @@
         campo.value = valor;
     }
 
-    function formatarNascimento(campo) {
-        let valor = campo.value.replace(/\D/g, "").slice(0, 8);
-        valor = valor.replace(/^(\d{2})(\d)/, "$1/$2");
-        valor = valor.replace(/^(\d{2})\/(\d{2})(\d)/, "$1/$2/$3");
-        campo.value = valor;
-    }
-
     mostrarData();
 
     if (list) {
@@ -130,10 +123,6 @@
         document.getElementById("tel").addEventListener("input", evento => {
             formatarTelefone(evento.currentTarget);
         });
-        document.getElementById("dataNascimento").addEventListener("input", evento => {
-            formatarNascimento(evento.currentTarget);
-        });
-
         form.addEventListener("submit", evento => {
             evento.preventDefault();
             const nome = document.getElementById("nome").value.trim();

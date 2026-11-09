@@ -7,15 +7,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/dashboard.js" defer></script>
-    <script src="../js/finance.js" defer></script>
     <link rel="stylesheet" href="../css/style.css">
     <title>Financeiro</title>
 </head>
 
-<body>
+<body class="relatorios-page">
     <div id="menu"></div>
 
-    <main>
+    <main class="financeiro-page">
         <header class="header">
             <div>
                 <p class="nome-page">Financeiro</p>
@@ -23,116 +22,155 @@
             </div>
         </header>
 
-        <div class="cards-f">
+        <p class="aviso-dados aviso-dados-erro" id="aviso-dados" role="alert" hidden></p>
+
+        <section class="cards-f" aria-label="Resumo financeiro rápido">
             <div class="card-f">
                 <div class="dec-f"></div>
                 <i class="ti ti-trending-up"></i>
                 <p id="mes-atual"></p>
-                <p class="valor">R$8.750,00</p>
+                <p class="valor" id="faturamento-mes">R$ 0,00</p>
             </div>
 
             <div class="card-f">
                 <div class="dec-f"></div>
                 <i class="ti ti-trending-up"></i>
                 <p>FATURAMENTO DA SEMANA</p>
-                <p class="valor">R$2.320,00</p>
+                <p class="valor" id="faturamento-semana">R$ 0,00</p>
             </div>
 
             <div class="card-f">
                 <div class="dec-f"></div>
                 <i class="ti ti-trending-up"></i>
                 <p>FATURAMENTO DO DIA</p>
-                <p class="valor">R$350,00</p>
+                <p class="valor" id="faturamento-dia">R$ 0,00</p>
             </div>
-        </div>
+        </section>
 
-        <div class="cards-f-2">
-            <div class="grafico-card">
-                <h3>Rendimento Mensal</h3>
-                <canvas id="graficoFinanceiro"></canvas>
+                <section class="cards-f-2" aria-label="Gráficos financeiros anuais">
+            <article class="grafico-card">
+                <div class="grafico-header">
+                    <div>
+                        <h3>Faturamento mensal</h3>
+                        <p>Valores por mês ao longo do ano</p>
+                    </div>
+                    <label class="seletor-ano" for="ano-faturamento">
+                        <span>Ano</span>
+                        <select id="ano-faturamento" aria-label="Ano do gráfico de faturamento"></select>
+                    </label>
+                </div>
+                <div class="grafico-area">
+                    <canvas id="graficoFinanceiro" aria-label="Gráfico de faturamento mensal"></canvas>
+                </div>
+            </article>
+            <article class="grafico-card">
+                <div class="grafico-header">
+                    <div>
+                        <h3>Total de atendimentos</h3>
+                        <p>Atendimentos concluídos por mês</p>
+                    </div>
+                    <label class="seletor-ano" for="ano-atendimentos">
+                        <span>Ano</span>
+                        <select id="ano-atendimentos" aria-label="Ano do gráfico de atendimentos"></select>
+                    </label>
+                </div>
+                <div class="grafico-area">
+                    <canvas id="graficoAtendimentos" aria-label="Gráfico de atendimentos mensais"></canvas>
+                </div>
+            </article>
+        </section>
+
+        <section class="resumo-periodo" aria-label="Desempenho das profissionais">
+            <div class="filtros-periodo">
+                <div>
+                    <h2>Desempenho das profissionais</h2>
+                    <p>Consulte faturamento e atendimentos no período selecionado.</p>
+                </div>
+                <div class="controles-periodo">
+                    <label for="tipo-periodo">Visualizar por</label>
+                    <select id="tipo-periodo">
+                        <option value="dia">Dia</option>
+                        <option value="semana">Semana</option>
+                        <option value="mes" selected>Mês</option>
+                    </select>
+
+                    <label class="periodo-campo" id="campo-dia" for="periodo-dia" hidden>Data</label>
+                    <input class="periodo-campo" id="periodo-dia" type="date" hidden>
+
+                    <label class="periodo-campo" id="campo-semana" for="periodo-semana" hidden>Semana</label>
+                    <input class="periodo-campo" id="periodo-semana" type="week" hidden>
+
+                    <label class="periodo-campo" id="campo-mes" for="periodo-mes">Mês</label>
+                    <input class="periodo-campo" id="periodo-mes" type="month">
+                </div>
             </div>
-            <div class="grafico-card">
-                <h3>Total de Atendimentos</h3>
-                <canvas id="graficoAtendimentos"></canvas>
+
+            <div class="indicadores-periodo">
+                <article class="indicador-periodo">
+                    <i class="ti ti-cash" aria-hidden="true"></i>
+                    <div>
+                        <p>Faturamento total no período</p>
+                        <strong id="total-faturamento">R$ 0,00</strong>
+                        <span id="rotulo-faturamento"></span>
+                    </div>
+                </article>
+                <article class="indicador-periodo">
+                    <i class="ti ti-calendar-check" aria-hidden="true"></i>
+                    <div>
+                        <p>Atendimentos no período</p>
+                        <strong id="total-atendimentos">0</strong>
+                        <span id="rotulo-atendimentos"></span>
+                    </div>
+                </article>
             </div>
-        </div>
+        </section>
 
-        <div class="tabelas-financeiro">
+        <section class="tabelas-financeiro" aria-label="Resumo por profissional">
 
-            <!-- Faturamento -->
-            <div class="tabela-card">
+            <article class="tabela-card">
                 <div class="tabela-header">
-                    <h3>Faturamento por Profissional</h3>
+                    <h3>Faturamento por profissional</h3>
+                    <p>Valores registrados no período selecionado</p>
                 </div>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Profissional</th>
-                            <th>Hoje</th>
-                            <th>Semana</th>
-                            <th>Mês</th>
-                        </tr>
-                    </thead>
+                <div class="tabela-responsiva">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Profissional</th>
+                                <th class="valor-coluna" id="cabecalho-faturamento">Faturamento</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-faturamento"></tbody>
+                    </table>
+                </div>
+            </article>
 
-                    <tbody>
-                        <tr>
-                            <td class="profissional">Anny</td>
-
-                            <td>R$240</td>
-                            <td>R$1.150</td>
-                            <td>R$4.800</td>
-                        </tr>
-
-                        <tr>
-                            <td class="profissional">Val</td>
-
-                            <td>R$180</td>
-                            <td>R$1.320</td>
-                            <td>R$5.100</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Atendimentos -->
-            <div class="tabela-card">
+            <article class="tabela-card">
                 <div class="tabela-header">
-                    <h3>Total de Atendimentos</h3>
+                    <h3>Atendimentos por profissional</h3>
+                    <p>Atendimentos concluídos no período selecionado</p>
                 </div>
 
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Profissional</th>
-                            <th>Hoje</th>
-                            <th>Semana</th>
-                            <th>Mês</th>
-                        </tr>
-                    </thead>
+                <div class="tabela-responsiva">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Profissional</th>
+                                <th class="valor-coluna" id="cabecalho-atendimentos">Atendimentos</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-atendimentos"></tbody>
+                    </table>
+                </div>
+            </article>
 
-                    <tbody>
-                        <tr>
-                            <td class="profissional">Anny</td>
-                            <td>4</td>
-                            <td>18</td>
-                            <td>72</td>
-                        </tr>
-
-                        <tr>
-                            <td class="profissional">Val</td>
-                            <td>3</td>
-                            <td>21</td>
-                            <td>81</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
+        </section>
 
     </main>
 
+    <script src="../js/financial-data.js"></script>
+    <script src="../js/finance.js"></script>
     <script src="../js/menu.js"></script>
 </body>
 
