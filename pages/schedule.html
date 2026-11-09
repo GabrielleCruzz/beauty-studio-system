@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/dashboard.js" defer></script>
     <script src="../js/schedule.js" defer></script>
-    <title>Agenda do dia</title>
+    <title>Agenda</title>
 </head>
 
 <body>
@@ -16,20 +16,31 @@
 
     <main>
 
-        <header class="header">
+        <header class="header header-agenda-page">
             <div>
-                <p class="nome-page">Agenda do dia</p>
+                <p class="nome-page">Agenda</p>
                 <p class="data" id="data">Data</p>
             </div>
-            <div>
-                <button id="abrir-modal">+ Novo Agendamento</button>
+            <div class="agenda-header-actions">
+                <button id="abrir-modal" type="button">+ Novo Agendamento</button>
             </div>
         </header>
 
         <div class="descricao">
-            <div class="concluido"></div>Concluído
-            <div class="emandamento"></div>Em andamento
-            <div class="naoiniciado"></div>Não iniciado
+            <div class="legenda-status-agenda">
+                <div class="concluido"></div>Concluído
+                <div class="emandamento"></div>Em andamento
+                <div class="naoiniciado"></div>Não iniciado
+            </div>
+            <div class="navegacao-agenda-data" aria-label="Navegar entre datas da agenda">
+                <button class="btn-dia-agenda" id="dia-anterior" type="button" aria-label="Dia anterior">
+                    <i class="ti ti-chevron-left" aria-hidden="true"></i>
+                </button>
+                <input id="data-selecionada" type="date" aria-label="Selecionar data da agenda">
+                <button class="btn-dia-agenda" id="proximo-dia" type="button" aria-label="Próximo dia">
+                    <i class="ti ti-chevron-right" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
 
         <div class="agenda">
@@ -37,6 +48,7 @@
                 <p class="titulo hora-titulo">Hora</p>
                 <p class="titulo agendamento-titulo">Agendamento</p>
             </div>
+            <p class="agenda-vazia" id="agenda-vazia" hidden>Nenhum agendamento nesta data.</p>
 
             <div class="linha-agenda">
                 <div class="linha-hora">
@@ -314,7 +326,7 @@
 
                     <div class="campo">
                         <label>Data</label>
-                        <input type="date" id="data-agendamento">
+                        <input type="date" id="data-agendamento" required>
                     </div>
                     <div class="campo">
                         <label>Horário</label>

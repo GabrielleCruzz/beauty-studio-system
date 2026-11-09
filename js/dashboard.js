@@ -49,7 +49,20 @@
     const formAgendamento = document.querySelector(".form-agendamento");
     const listaProcedimentos = document.getElementById("lista-procedimentos");
     const totalAgendamento = document.getElementById("valor-agendamento");
+    const dataAgendamento = document.getElementById("data-agendamento");
     let idCampoProcedimento = 0;
+
+    function dataLocalAtual() {
+        const agora = new Date();
+        return [
+            agora.getFullYear(),
+            String(agora.getMonth() + 1).padStart(2, "0"),
+            String(agora.getDate()).padStart(2, "0")
+        ].join("-");
+    }
+
+    dataAgendamento.min = dataLocalAtual();
+    dataAgendamento.addEventListener("input", () => dataAgendamento.setCustomValidity(""));
 
     function lerValor(texto) {
         const valorLimpo = texto.trim().replace(/[^\d,.-]/g, "");
@@ -192,6 +205,13 @@
         const agenda = document.querySelector(".agenda");
         if (!agenda) return;
 
+        if (!dataAgendamento.value || dataAgendamento.value < dataLocalAtual()) {
+            evento.preventDefault();
+            dataAgendamento.setCustomValidity("Escolha hoje ou uma data futura.");
+            dataAgendamento.reportValidity();
+            return;
+        }
+        dataAgendamento.setCustomValidity("");
         evento.preventDefault();
         const itens = Array.from(listaProcedimentos.querySelectorAll(".item-procedimento"));
         const assignments = itens.map(item => ({
@@ -210,6 +230,7 @@
 
         const atendimento = document.createElement("div");
         atendimento.classList.add("linha-cliente", "naoiniciado");
+        atendimento.dataset.id = crypto.randomUUID();
         atendimento.dataset.status = "naoiniciado";
         atendimento.dataset.data = formAgendamento.querySelector("#data-agendamento").value;
         atendimento.dataset.valor = totalAgendamento.value.trim();

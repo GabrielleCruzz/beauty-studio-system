@@ -2,8 +2,14 @@
 
     // Atualizar status
 
-    const agendamentos = document.querySelectorAll(".linha-cliente");
+    const agenda = document.querySelector(".agenda");
+    const seletorDataAgenda = document.getElementById("data-selecionada");
+    const dataAgendaTexto = document.getElementById("data");
+    const agendaVazia = document.getElementById("agenda-vazia");
+    const chaveAgendamentos = "beautyStudio.appointments.v1";
+    let dataSelecionada = dataLocalAtual();
     let agendamentoAtual = null;
+    let agendamentos = [];
     const overlayCobranca = document.querySelector(".overlay-cobranca");
     const fecharCobranca = document.getElementById("fechar-cobranca");
     const confirmarPagamento = document.getElementById("confirmarPagamento");
@@ -29,6 +35,175 @@
             style: "currency",
             currency: "BRL"
         });
+    }
+
+    function dataLocalAtual() {
+        const agora = new Date();
+        return `${agora.getFullYear()}-${String(agora.getMonth() + 1).padStart(2, "0")}-${String(agora.getDate()).padStart(2, "0")}`;
+    }
+
+    function formatarDataAgenda(data) {
+        const [ano, mes, dia] = data.split("-").map(Number);
+        const texto = new Date(ano, mes - 1, dia).toLocaleDateString("pt-BR", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
+        return `${texto.charAt(0).toLocaleUpperCase("pt-BR")}${texto.slice(1)}`;
+    }
+
+    function avancarData(data, dias) {
+        const [ano, mes, dia] = data.split("-").map(Number);
+        const novaData = new Date(ano, mes - 1, dia + dias);
+        return `${novaData.getFullYear()}-${String(novaData.getMonth() + 1).padStart(2, "0")}-${String(novaData.getDate()).padStart(2, "0")}`;
+    }
+
+    function resumoProfissionais(procedimentos) {
+        const profissionais = new Set(procedimentos.map(item => item.profissional).filter(Boolean));
+        return ["Val", "Anny"].filter(nome => profissionais.has(nome)).join(" e ") || "Não informado";
+    }
+
+    function registroDoElemento(linha, indice) {
+        const atendimento = linha.querySelector(".linha-cliente");
+        const profissionalEl = atendimento.querySelector(".profissional");
+        const profissionalAnterior = Array.from(profissionalEl.childNodes)
+            .filter(no => no.nodeType === Node.TEXT_NODE)
+            .map(no => no.textContent)
+            .join("")
+            .trim();
+        const procedimentos = atendimento.querySelector(".procedimento").textContent
+            .split("•")
+            .map(procedimento => procedimento.trim())
+            .filter(Boolean);
+
+        return {
+            id: atendimento.dataset.id || `agenda-inicial-${indice + 1}`,
+            data: atendimento.dataset.data || dataLocalAtual(),
+            horario: linha.querySelector(".linha-hora p").textContent.trim(),
+            cliente: atendimento.querySelector(".cliente").textContent.trim(),
+            status: atendimento.dataset.status || "naoiniciado",
+            valor: atendimento.dataset.valor || "",
+            observacoes: atendimento.dataset.observacoes || "",
+            formaPagamento: atendimento.dataset.formaPagamento || "",
+            parcelas: atendimento.dataset.parcelas || "",
+            procedimentos: atendimento.dataset.professionalAssignments
+                ? JSON.parse(atendimento.dataset.professionalAssignments)
+                : procedimentos.map(procedimento => ({
+                    procedimento,
+                    profissional: profissionalAnterior,
+                    valor: null
+                }))
+        };
+    }
+
+    function lerAgendamentos() {
+        const dados = localStorage.getItem(chaveAgendamentos);
+        if (dados === null) {
+            const registrosIniciais = Array.from(agenda.querySelectorAll(".linha-agenda"))
+                .filter(linha => linha.querySelector(".linha-cliente"))
+                .filter(linha => {
+                    const atendimento = linha.querySelector(".linha-cliente");
+                    return !(
+                        atendimento.querySelector(".cliente").textContent.trim() === "Cliente"
+                        && atendimento.querySelector(".procedimento").textContent.trim() === "Procedimento"
+                        && atendimento.querySelector(".profissional").textContent.trim() === "Profissional"
+                    );
+                })
+                .map(registroDoElemento);
+            localStorage.setItem(chaveAgendamentos, JSON.stringify(registrosIniciais));
+            return registrosIniciais;
+        }
+
+        const registros = JSON.parse(dados);
+        const statusValidos = ["naoiniciado", "emandamento", "concluido"];
+        if (!Array.isArray(registros) || registros.some(registro =>
+            !registro
+            || typeof registro.id !== "string"
+            || !/^\d{4}-\d{2}-\d{2}$/.test(registro.data)
+            || !statusValidos.includes(registro.status)
+            || !Array.isArray(registro.procedimentos)
+        )) {
+            throw new Error("Os agendamentos armazenados neste navegador estão inválidos.");
+        }
+        return registros;
+    }
+
+    function criarLinhaAgenda(registro) {
+        const linha = document.createElement("div");
+        linha.classList.add("linha-agenda");
+        const horario = document.createElement("div");
+        horario.classList.add("linha-hora");
+        const horarioTexto = document.createElement("p");
+        horarioTexto.textContent = registro.horario;
+        horario.appendChild(horarioTexto);
+
+        const atendimento = document.createElement("div");
+        atendimento.classList.add("linha-cliente");
+        atendimento.dataset.id = registro.id;
+        atendimento.dataset.data = registro.data;
+        atendimento.dataset.status = registro.status;
+        atendimento.dataset.valor = registro.valor;
+        atendimento.dataset.observacoes = registro.observacoes;
+        atendimento.dataset.formaPagamento = registro.formaPagamento;
+        atendimento.dataset.parcelas = registro.parcelas;
+        atendimento.dataset.professionalAssignments = JSON.stringify(registro.procedimentos);
+
+        const info = document.createElement("div");
+        info.classList.add("info-agendamento");
+        const cliente = document.createElement("p");
+        cliente.classList.add("cliente");
+        cliente.textContent = registro.cliente;
+        const procedimentos = document.createElement("p");
+        procedimentos.classList.add("procedimento");
+        procedimentos.textContent = registro.procedimentos.map(item => item.procedimento).join(" • ");
+        const profissional = document.createElement("p");
+        profissional.classList.add("profissional");
+        const iconeProfissional = document.createElement("i");
+        iconeProfissional.classList.add("ti", "ti-users");
+        profissional.append(
+            iconeProfissional,
+            document.createTextNode(resumoProfissionais(registro.procedimentos))
+        );
+        info.append(cliente, procedimentos, profissional);
+
+        const acoes = document.createElement("div");
+        acoes.classList.add("acoes-agendamento");
+        const botaoStatus = document.createElement("button");
+        botaoStatus.classList.add("btn-status");
+        const botaoEditar = document.createElement("button");
+        botaoEditar.classList.add("btn-editar");
+        botaoEditar.title = "Editar";
+        const iconeEditar = document.createElement("i");
+        iconeEditar.classList.add("ti", "ti-pencil");
+        botaoEditar.appendChild(iconeEditar);
+        acoes.append(botaoStatus, botaoEditar);
+        atendimento.append(info, acoes);
+        linha.append(horario, atendimento);
+        return linha;
+    }
+
+    function salvarAgendamentos() {
+        agendamentos = Array.from(agenda.querySelectorAll(".linha-agenda"))
+            .filter(linha => linha.querySelector(".linha-cliente"))
+            .map(registroDoElemento);
+        localStorage.setItem(chaveAgendamentos, JSON.stringify(agendamentos));
+    }
+
+    function filtrarDataAgenda() {
+        dataAgendaTexto.textContent = formatarDataAgenda(dataSelecionada);
+        seletorDataAgenda.value = dataSelecionada;
+        const linhas = agenda.querySelectorAll(".linha-agenda");
+        let quantidadeVisivel = 0;
+        linhas.forEach(linha => {
+            const atendimento = linha.querySelector(".linha-cliente");
+            if (!atendimento) return;
+            const visivel = atendimento.dataset.data === dataSelecionada;
+            linha.hidden = !visivel;
+            if (visivel) quantidadeVisivel += 1;
+            atualizarStatus(atendimento, atendimento.querySelector(".btn-status"));
+        });
+        agendaVazia.hidden = quantidadeVisivel > 0;
     }
 
     function atualizarResumoValor() {
@@ -75,23 +250,18 @@
         atualizarResumoValor();
     }
 
-    agendamentos.forEach((agendamento) => {
-        const status = agendamento.dataset.status;
-        agendamento.classList.add(status);
-        const botao = agendamento.querySelector(".btn-status");
-        atualizarStatus(agendamento, botao);
-    });
-
-    const agenda = document.querySelector(".agenda");
     agenda.addEventListener("click", evento => {
         const botaoStatus = evento.target.closest(".btn-status");
         if (botaoStatus) {
             const agendamento = botaoStatus.closest(".linha-cliente");
+            if (agendamento.dataset.data > dataLocalAtual()) return;
+
             const statusAtual = agendamento.dataset.status;
 
             if (statusAtual === "naoiniciado") {
                 agendamento.dataset.status = "emandamento";
                 atualizarStatus(agendamento, botaoStatus);
+                salvarAgendamentos();
             } else if (statusAtual === "emandamento") {
                 agendamentoAtual = agendamento;
                 preencherResumoCobranca(agendamento);
@@ -133,6 +303,7 @@
             }, 3000);
             return;
         }
+        if (agendamentoAtual.dataset.data > dataLocalAtual()) return;
 
         agendamentoAtual.dataset.valor = formatarMoeda(valor);
         agendamentoAtual.dataset.formaPagamento = formaPagamento.value;
@@ -141,6 +312,7 @@
         agendamentoAtual.dataset.status = "concluido";
         const botao = agendamentoAtual.querySelector(".btn-status");
         atualizarStatus(agendamentoAtual, botao);
+        salvarAgendamentos();
         overlayCobranca.classList.remove("abrir");
         valorPagamento.value = "";
         agendamentoAtual = null;
@@ -156,7 +328,7 @@
         );
 
         agendamento.classList.add(status);
-        botao.disabled = false;
+        botao.disabled = agendamento.dataset.data > dataLocalAtual();
 
         switch (status) {
 
@@ -173,6 +345,37 @@
                 break;
         }
     }
+
+    agendamentos = lerAgendamentos();
+    agenda.querySelectorAll(".linha-agenda").forEach(linha => linha.remove());
+    agendamentos.forEach(registro => {
+        const linha = criarLinhaAgenda(registro);
+        agenda.appendChild(linha);
+        const atendimento = linha.querySelector(".linha-cliente");
+        atendimento.classList.add(atendimento.dataset.status);
+        atualizarStatus(atendimento, atendimento.querySelector(".btn-status"));
+    });
+
+    function atualizarDataSelecionada(data) {
+        if (!data) return;
+        dataSelecionada = data;
+        filtrarDataAgenda();
+    }
+
+    document.getElementById("dia-anterior").addEventListener("click", () => {
+        atualizarDataSelecionada(avancarData(dataSelecionada, -1));
+    });
+    document.getElementById("proximo-dia").addEventListener("click", () => {
+        atualizarDataSelecionada(avancarData(dataSelecionada, 1));
+    });
+    seletorDataAgenda.addEventListener("change", () => {
+        atualizarDataSelecionada(seletorDataAgenda.value);
+    });
+    document.querySelector(".form-agendamento").addEventListener("submit", () => {
+        salvarAgendamentos();
+        filtrarDataAgenda();
+    });
+    filtrarDataAgenda();
 
     // Funções dos modais
 
@@ -203,18 +406,6 @@
     const acoesEdtAgendamento = formEdtAgendamento.querySelector(".acoes-edt");
     let agendamentoEmEdicao = null;
     let idCampoProcedimentoEdt = 0;
-
-    function dataLocalAtual() {
-        const agora = new Date();
-        const mes = String(agora.getMonth() + 1).padStart(2, "0");
-        const dia = String(agora.getDate()).padStart(2, "0");
-        return `${agora.getFullYear()}-${mes}-${dia}`;
-    }
-
-    function resumoProfissionais(procedimentos) {
-        const profissionais = new Set(procedimentos.map(item => item.profissional).filter(Boolean));
-        return ["Val", "Anny"].filter(nome => profissionais.has(nome)).join(" e ") || "Não informado";
-    }
 
     function atualizarTotalEdt() {
         const total = Array.from(listaProcedimentosEdt.querySelectorAll(".valor-item-procedimento"))
@@ -517,6 +708,12 @@
         agendamentoEmEdicao.dataset.valor = valor;
         agendamentoEmEdicao.dataset.observacoes = observacoes;
         agendamentoEmEdicao.dataset.professionalAssignments = JSON.stringify(procedimentos);
+        atualizarStatus(
+            agendamentoEmEdicao,
+            agendamentoEmEdicao.querySelector(".btn-status")
+        );
+        salvarAgendamentos();
+        filtrarDataAgenda();
         fecharModal(overlayEdtAgendamento);
         agendamentoEmEdicao = null;
     });

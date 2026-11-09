@@ -174,6 +174,44 @@ header button:hover {
     background-color: var(--gr2);
 }
 
+.agenda-header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.navegacao-agenda-data {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-left: auto;
+}
+
+.navegacao-agenda-data input {
+    min-width: 9.5rem;
+    padding: 0.55rem 0.65rem;
+    border: 1px solid var(--linha-agenda);
+    border-radius: 8px;
+    background: white;
+    color: var(--color-font4);
+    font: inherit;
+}
+
+.btn-dia-agenda {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border-radius: 10px;
+    border: 1px solid var(--linha2);
+    background: white;
+    color: var(--gr2);
+}
+
+.btn-dia-agenda:hover {
+    background: var(--bg-dec);
+}
+
 /* ===== Cards ===== */
 
 .cards {
@@ -427,6 +465,10 @@ header button:hover {
 
 .linha-agenda {
     border-bottom: 2px solid var(--linha-agenda);
+}
+
+.linha-agenda[hidden] {
+    display: none;
 }
 
 .linha-hora {
@@ -694,10 +736,18 @@ header button:hover {
 
 .descricao{
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     font-size: 0.8rem;
     padding: var(--page-padding);
     padding-bottom: 1rem;
     color: var(--color-font3);
+}
+
+.legenda-status-agenda {
+    display: flex;
+    align-items: center;
 }
 
 .descricao .concluido, .descricao .emandamento, .descricao .naoiniciado{
@@ -947,7 +997,31 @@ header button:hover {
     white-space: nowrap;
 }
 
+.agenda-vazia {
+    padding: 2rem 1rem;
+    color: var(--color-font3);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
 @media (max-width: 520px) {
+    header.header-agenda-page {
+        height: auto;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 1rem;
+    }
+
+    .descricao {
+        flex-wrap: wrap;
+        padding: 1rem;
+    }
+
+    .navegacao-agenda-data {
+        margin-left: auto;
+    }
+
     .relatorio-atendimento {
         grid-template-columns: 1fr;
     }
